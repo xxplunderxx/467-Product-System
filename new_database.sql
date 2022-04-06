@@ -2,29 +2,34 @@
 # Julia Finegan, 
 # Product System SQL
 
+DROP TABLE IF EXISTS Order_Prod;
+DROP TABLE IF EXISTS Order_Info;
+DROP TABLE IF EXISTS Inventory;
+
 CREATE TABLE Inventory(
 	Num	INT	NOT NULL	 AUTO_INCREMENT,
-	quantity	INT	NOT NULL
-	PRIMARY_KEY(Num)
+	quantity	INT	NOT NULL,
+	PRIMARY KEY (Num)
 );
 
 CREATE TABLE Order_Info(
-	Order_ID	INT,
-	cust_name	CHAR(30),
-	cust_addr	CHAR(55),
-	cust_email	CHAR(40),
-	total_price	DECIMAL(8,2),
-	status		CHAR(12),
-	date		DATE,
-	total_weight	DECIMAL(8,2),
+	Order_ID	INT	NOT NULL	AUTO_INCREMENT, 
+	cust_name	CHAR(30)	NOT NULL,
+	cust_addr	CHAR(55)	NOT NULL,
+	cust_email	CHAR(40)	NOT NULL,
+	total_price	DECIMAL(8,2)	NOT NULL,
+	status		CHAR(12)	NOT NULL,
+	date		DATE	NOT NULL,
+	total_weight	DECIMAL(8,2)	NOT NULL,
 	PRIMARY KEY (Order_ID)
 );
 
-CREATE TABLE Order(
-	Order_ID	INT,
-	prod_ID		INT,
-	amount		INT,
-	price	DECIMAL(8,2),
+CREATE TABLE Order_Prod(
+	Order_ID	INT	NOT NULL	AUTO_INCREMENT,
+	prod_ID		INT	NOT NULL,
+	amount		INT	NOT NULL,
+	price	DECIMAL(8,2)	NOT NULL,
 	PRIMARY KEY (Order_ID, prod_ID),
-	FOREIGN KEY (Order_ID) REFERENCES Order_Info(Order_ID)
+	FOREIGN KEY (Order_ID) REFERENCES Order_Info(Order_ID),
+	FOREIGN KEY (prod_ID) REFERENCES Inventory (Num)
 );

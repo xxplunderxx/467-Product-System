@@ -1,5 +1,5 @@
 # 467-Product-System
-Goup project for 467 class
+Group project for 467 class
 
 
 Created By: 

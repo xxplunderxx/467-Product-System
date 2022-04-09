@@ -73,6 +73,8 @@ if(isset($_POST['addToCart'])) {
 		echo "<tr><th>Product</th><th>Description</th><th>Price</th><th>Weight</th><th>Available</th><th></th>";
 
 //	while($item = $prepared->fetch())
+        echo "<form action=\"http://students.cs.niu.edu/~z1886085/customer.php\" method=\"POST\">";
+
 	foreach($pdo->query($sql) as $item)
 	{
 		$sql2 = "INSERT INTO Inventory(Num) VALUES(?);";
@@ -85,10 +87,10 @@ if(isset($_POST['addToCart'])) {
 		$prod = $prepared2->fetch();
 		echo "<tr><td><img src=\"" . $item[4] . "\"></td><td>". $item[1] . "</td><td>$" . $item[2] . "</td><td>" . $item[3] . "lbs.</td><td>" . $prod[1] . "</td>";
 
-                //echo "<td><form action=\"http://students.cs.niu.edu/~z1886085/customer.php\" method=\"POST\"><input type=\"hidden\" name=\"prod\" value=\"$item[0]\" />Quantity:&nbsp;<input type=\"text\" name=\"quantity\"/><input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/></td></tr>";
+                echo "<td><input type=\"hidden\" name=\"prod\" value=\"$item[0]\" />Quantity:&nbsp;<input type=\"text\" name=\"quantity\"/><input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/></td></tr>";
 	}
 
-	echo "</table>";
+	echo "</form></table>";
 
 //}
 echo "</body>"

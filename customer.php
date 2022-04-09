@@ -13,7 +13,7 @@ if(isset($_POST['addToCart']))
                 {
                         $count = count($_SESSION["shopping_cart"]);
                         $item_array = array(
-                                'item_id' => $_POST["hidden_prod"],
+                                'item_id' => $_POST["prod_hidden"],
                                 'item_quantity' => $_POST["quantity"]
                         );
                         $_SESSION["shopping_cart"][$count] = $item_array;   // store after previous items
@@ -64,7 +64,6 @@ catch(PDOexception $e)
 		echo "<tr><th>Product</th><th>Description</th><th>Price</th><th>Weight</th><th>Available</th><th></th>";
 
 //	while($item = $prepared->fetch())
-        echo "<form action=\"http://students.cs.niu.edu/~z1886085/customer.php\" method=\"POST\">";
 
 	foreach($pdo->query($sql) as $item)
 	{
@@ -79,20 +78,17 @@ catch(PDOexception $e)
 
 		echo "<tr><td><img src=\"" . $item[4] . "\"></td><td>". $item[1] . "</td><td>$" . $item[2] . "</td><td>" . $item[3] . "lbs.</td><td>" . $prod[1] . "</td>";
 
-                echo "<td><input type=\"hidden\" name=\"hidden_prod\" value=\"$item[0]\" />Quantity:&nbsp;<input type=\"text\" name=\"quantity\"/><input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/></td></tr>";
+                echo "<td><form action=\"http://students.cs.niu.edu/~z1886085/customer.php\" method=\"POST\"><input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;<input type=\"text\" name=\"quantity\"/><input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/></td></tr>";
 	}
-
-	echo "</form></table>";
+        echo "</table>";
 
         if(!empty($_SESSION["shopping_cart"])) 
         {
-                $total = 0;
-                foreach($_SESSION["shopping_cart"] as $keys => $values)
-                {
-                        echo "<tr>";
-                                echo '$values["item_id"]';
-                        echo "</tr>";
-                }
+                print_r($_SESSION["shopping_cart"]);
+                echo "there is data";
+        }
+        else{
+                echo "there is not data";
         }
 //}
 echo "</body>"

@@ -9,7 +9,7 @@ if(isset($_POST['addToCart']))
         {
                 // check item added to cart is already in the session
                 $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-                if(!in_array($_POST["hidden_prod"], $item_array_id))    
+                if(!in_array($_POST["prod_hidden"], $item_array_id))    
                 {
                         $count = count($_SESSION["shopping_cart"]);
                         $item_array = array(

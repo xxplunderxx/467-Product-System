@@ -5,7 +5,7 @@ include 'secrets.php';
 session_start();
 if(isset($_POST['addToCart']))
 {       
-        if(isset($_SESSION['cart']))
+        if(isset($_SESSION['shopping_cart']))
         {
                 // check item added to cart is already in the session
                 $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");

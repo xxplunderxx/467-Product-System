@@ -84,30 +84,16 @@ catch(PDOexception $e)
 
 	echo "</form></table>";
 
-if(isset($_POST['addToCart'])) 
-{
-        $prod = $_POST['prod'];
-        $quant = $_POST['quantity'];
-
-        print_r($quant);
-
-        // checking for invalid input
-        /*if($quant > 0 and is_numeric($quant)) {
-                if(isset($_SESSION['cart'][$prod])) {
-                        $_SESSION['cart'][$prod] += $quant;
-                }
-                else {
-                        $_SESSION['cart'][$prod] = $quant;
+        if(!empty($_SESSION["shopping_cart"])) 
+        {
+                $total = 0;
+                foreach($_SESSION["shopping_cart"] as $keys => $values)
+                {
+                        echo "<tr>";
+                                echo '$values["item_id"]';
+                        echo "</tr>";
                 }
         }
-        else {
-                echo "bad input";
-        }
-        */
-        print_r($_SESSION['cart']);
-
-        session_destroy();
-}
 //}
 echo "</body>"
 

@@ -23,12 +23,13 @@ catch(PDOexception $e) { // handle that exception
 
 //-************************************************************************
 // Connecting to the new database
-try { // if something goes wrong, an exception is thrown
-        $dsn2 = "mysql:host=courses;dbname=z1886085";
+try{
+        $dsn2 = "mysql:host=courses;dbname=".$username2;
         $pdo2 = new PDO($dsn2, $username2, $password2);
 }
-catch(PDOexception $f) { // handle that exception
-        echo "Connection to database failed: " . $f->getMessage();
+catch(PDOexception $e)
+{
+        echo "Connection to database failed: " . $e->getMessage();
 }
 
 //-*************************************************************************

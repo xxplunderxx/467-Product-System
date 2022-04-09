@@ -25,7 +25,7 @@ if(isset($_POST['addToCart']))
         else    // we need to get data from the form
         {
                 $item_array = array(
-                        'item_id' => $_POST["hidden_prod"],
+                        'item_id' => $_POST["prod_hidden"],
                         'item_quantity' => $_POST["quantity"]
                 );
                 $_SESSION["shopping_cart"][0] = $item_array;

@@ -78,7 +78,7 @@ catch(PDOexception $e)
 
 		echo "<tr><td><img src=\"" . $item[4] . "\"></td><td>". $item[1] . "</td><td>$" . $item[2] . "</td><td>" . $item[3] . "lbs.</td><td>" . $prod[1] . "</td>";
 
-                echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php\" method=\"POST\"><input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;<input type=\"text\" name=\"quantity\"/><input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/></td></tr>";
+                echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php\" method=\"POST\"><input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;<input type=\"text\" name=\"quantity\"/><input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/></td></form></tr>";
 	}
         echo "</table>";
 

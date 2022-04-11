@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +11,9 @@
 <?php
         include 'secrets.php';
 
-        session_start();
         if(isset($_POST['addToCart']))
         {       
-                if(isset($_SESSION['shopping_cart']))
+                if(isset($_SESSION['shopping_cart'][0]))
                 {
                         // check item added to cart is already in the session
                         $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
@@ -26,12 +26,13 @@
                                 );
                                 $_SESSION["shopping_cart"][$count] = $item_array;   // store after previous items
                         }
-                        else{   // we know item is ! stored in the session
+                        else{   // we know item is already stored in the session
                                 echo'Error item has already been added';
                         }
                 }
                 else    // we need to get data from the form
                 {
+                        echo "added shopping cart session";
                         $item_array = array(
                                 'item_id' => $_POST["prod_hidden"],
                                 'item_quantity' => $_POST["quantity"]
@@ -104,10 +105,17 @@
         //tests what is inside the shopping cart
         if(!empty($_SESSION["shopping_cart"])) 
         {
-                print_r($_SESSION);
+                //print_r($_SESSION['shopping_cart']);
+                foreach($_SESSION as $value)
+                {
+                        foreach($value as $index)
+                        {
+                                print_r($index);
+                        }
+                }
         }
         else{
-                echo "there is not data";
+                echo "there is no data";
         }
 ?>
 </body>

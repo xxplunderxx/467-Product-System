@@ -102,22 +102,6 @@
 	}
         // closes the table that we started above php block
         echo "</table>";
-
-        //tests what is inside the shopping cart
-        if(!empty($_SESSION["shopping_cart"])) 
-        {
-                //print_r($_SESSION['shopping_cart']);
-                foreach($_SESSION as $value)
-                {
-                        foreach($value as $index)
-                        {
-                                print_r($index);
-                        }
-                }
-        }
-        else{
-                echo "there is no data";
-        }
 ?>
 </body>
 </html>

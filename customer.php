@@ -60,7 +60,7 @@
                 echo "Connection to database failed: " . $e->getMessage();
         }
 ?>
-        <h1>Products</h1>
+    <h1>Products</h1>
         <table border=2>
                 <tr>
                         <th>Product</th>
@@ -83,16 +83,25 @@
 		$sql2 = "SELECT * FROM Inventory WHERE Num = ?;";
 		$prepared2 = $pdo2->prepare($sql2);
 		$prepared2->execute(array($item[0]));   // item number from new_DB
-		$prod = $prepared2->fetch();
-
-		echo "<tr><td><img src=\"" . $item[4] . "\"></td><td>". $item[1] . "</td><td>$" . $item[2] . "</td><td>" . $item[3] . "lbs.</td><td>" . $prod[1] . "</td>";
-
-                echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php\" method=\"POST\"><input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;<input type=\"text\" name=\"quantity\"/><input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/></td></form></tr>";
+		$prod = $prepared2->fetch();       
+                
+                echo "<tr>";
+                        echo "<td><img src=\"" . $item[4] . "\"></td>";
+                        echo "<td>". $item[1] . "</td>";
+                        echo "<td>$" . $item[2] . "</td>";
+                        echo "<td>" . $item[3] . "lbs.</td>";
+                        echo "<td>" . $prod[1] . "</td>";
+                        echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php\" method=\"POST\">";
+                                echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;";
+                                echo "<input type=\"text\" name=\"quantity\"/>";
+                                echo "<input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/>";
+                        echo "</td></form>";
+                echo "</tr>";
 	}
-?>
-        </table>
+        // closes the table that we started above php block
+        echo "</table>";
 
-<?php
+        //tests what is inside the shopping cart
         if(!empty($_SESSION["shopping_cart"])) 
         {
                 print_r($_SESSION);

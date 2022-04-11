@@ -16,7 +16,9 @@ Group project for 467 class
     $username2 = "your_z#";
     $password2 = "your_password";
 
+4. In order to view the website you must have your files on hopper in the public.html directory
 
+# Authors
 Created By: 
 Aksh Patel,
 Alexandra Alcantar,

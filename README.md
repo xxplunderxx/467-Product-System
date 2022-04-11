@@ -8,15 +8,14 @@ Group project for 467 class
 # Setup
 1. The files on main are setup to whoever last commit them
 2. make sure that the z# matches yours or it will not work (do contorl F and look for the previous number
-3. you must create a secrets.php file formatted as following
-  
-  <?php
+3. you must create a secrets.php file wrapped in a php tag
+    
     $username = "student";
     $password = "student";
 
     $username2 = "your_z#";
     $password2 = "your_password";
-  ?>
+
 
 Created By: 
 Aksh Patel,

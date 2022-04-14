@@ -39,7 +39,6 @@
         }
 
         //check to see if item exists in legacy database
-
         //using product ID
         if (!empty($_POST["product_id"]))
         {
@@ -50,7 +49,7 @@
             $prepared->execute(array($product));
             $rows = $prepared->fetch();
 
-            print_r($rows);
+            $id_exists = true;
         }
         elseif (!empty($_POST["description"])) //using description
         {
@@ -59,13 +58,33 @@
             $sql = "SELECT number FROM parts WHERE description = ?;";
             $prepared = $pdo->prepare($sql);
             $prepared->execute(array($description));
-            $prod = $prepared->fetch();
-
-            print_r($prod);
+            $array = $prepared->fetch();
+            $product = $array[0];
+            
+            $description_exists = true;
         }
         else{
-            echo "Product ID or Description is required to LOG";
+            echo "ERROR- Product ID or Description required";
         }
+
+        // used to update quanitity row with desk clerk's input
+        if($id_exists || $description_exists)
+        {
+            $quantity = $_POST["quantity"];
+            $sql = "INSERT INTO Inventory (quantity) VALUE(?) WHERE num = $product;";
+
+            // $prepared = $pdo2->prepare($sql);
+            // $prepared->execute(array($quantity));
+            // $row = $prepared->fetch();
+
+            echo "sql: ". $sql;
+        }
+
+        // $sql = 'SELECT name, colour, calories
+        // FROM fruit
+        // WHERE calories < :calories AND colour = :colour';
+        // $sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+        // $sth->execute(array('calories' => 150, 'colour' => 'red'));
     ?>
 </body>
 </html>

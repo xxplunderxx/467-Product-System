@@ -10,7 +10,7 @@
 <body>
     <h1>Log Inbound Products</h1>
     <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/inbound.php" method="POST">
-        <input type="text" name="poduct_id" value="Product ID">
+        <input type="text" name="product_id" value="Product ID">
         <input type="text" name="description" value="Item Description">
         <input type="text" name="quantity" required>
         <input type="submit" name="log_item">

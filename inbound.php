@@ -10,8 +10,8 @@
 <body>
     <h1>Log Inbound Products</h1>
     <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/inbound.php" method="POST">
-        <input type="text" name="product_id" value="Product ID">
-        <input type="text" name="description" value="Item Description">
+        <input type="text" name="product_id">
+        <input type="text" name="description">
         <input type="text" name="quantity" required>
         <input type="submit" name="log_item">
     </form>
@@ -41,26 +41,25 @@
         //check to see if item exists in legacy database
 
         //using product ID
-        if (isset($_POST["product_id"]))
+        if (!empty($_POST["product_id"]))
         {
-            echo "product";
-            $product_id = $_POST["product_id"];
+            $product = $_POST["product_id"];
 
-            $sql = "SELECT * FROM parts WHERE number = ?;";
-            $prepared = $pdo->$prepare($sql);
-            $prepared->execute($product_id);
-            $prod = $prepared2->fetch();
+            $sql = "SELECT number FROM parts WHERE number = ?;";
+            $prepared = $pdo->prepare($sql);
+            $prepared->execute(array($product));
+            $rows = $prepared->fetch();
 
-            print_r($prod);
+            print_r($rows);
         }
-        elseif (isset($_POST["description"])) //using description
+        elseif (!empty($_POST["description"])) //using description
         {
             $description = $_POST["description"];
-
-            $sql = "SELECT * FROM parts WHERE description = ?;";
-            $prepared = $pdo->$prepare($sql);
-            $prepared->execute($description);
-            $prod = $prepared2->fetch();
+            
+            $sql = "SELECT number FROM parts WHERE description = ?;";
+            $prepared = $pdo->prepare($sql);
+            $prepared->execute(array($description));
+            $prod = $prepared->fetch();
 
             print_r($prod);
         }

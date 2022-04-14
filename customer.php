@@ -95,7 +95,7 @@
                         echo "<td>" . $prod[1] . "</td>";
                         echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php\" method=\"POST\">";
                                 echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;";
-                                echo "<input type=\"text\" name=\"quantity\"/>";
+                                echo "<input type=\"text\" name=\"quantity\" required/>";
                                 echo "<input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/>";
                         echo "</td></form>";
                 echo "</tr>";

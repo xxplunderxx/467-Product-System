@@ -49,7 +49,7 @@
             $prepared->execute(array($product));
             $rows = $prepared->fetch();
 
-            $id_exists = true;
+            $item_exists = true;
         }
         elseif (!empty($_POST["description"])) //using description
         {
@@ -61,23 +61,24 @@
             $array = $prepared->fetch();
             $product = $array[0];
             
-            $description_exists = true;
+            $item_exists = true;
         }
         else{
             echo "ERROR- Product ID or Description required";
         }
 
         // used to update quanitity row with desk clerk's input
-        if($id_exists || $description_exists)
+        if($item_exists)
         {
             $quantity = $_POST["quantity"];
-            $sql = "INSERT INTO Inventory (quantity) VALUE(?) WHERE num = $product;";
+            echo $quantity;
+            $sql = "UPDATE Inventory SET quantity = ? WHERE num = $product;";
 
-            // $prepared = $pdo2->prepare($sql);
-            // $prepared->execute(array($quantity));
-            // $row = $prepared->fetch();
+            $prepared = $pdo2->prepare($sql);
+            $prepared->execute(array($quantity));
+            $row = $prepared->fetch();
 
-            echo "sql: ". $sql;
+            echo "\n finished successfully";
         }
 
         // $sql = 'SELECT name, colour, calories

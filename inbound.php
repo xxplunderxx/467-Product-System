@@ -48,7 +48,9 @@
             $prepared->execute(array($product));
             $rows = $prepared->fetch();
 
-            $item_exists = true;
+            if($rows) { // check if item exists
+                $item_exists = true;
+            }
         }
         //using description
         elseif (!empty($_POST["description"])) 
@@ -61,7 +63,9 @@
             $array = $prepared->fetch();
             $product = $array[0];
             
-            $item_exists = true;
+            if($array) { // check if item exists
+                $item_exists = true;
+            }
         }
         else{
             echo "ERROR - Product ID or Description required";
@@ -78,6 +82,10 @@
             $row = $prepared->fetch();
 
             echo "\n updated quantity:" . $quantity. "successfully";
+            echo $item_exists;
+        }
+        else {
+            echo "item ".$product. " does not exist";
         }
 
     ?>

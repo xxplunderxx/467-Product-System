@@ -85,6 +85,8 @@
                         $sql2 = "INSERT INTO Inventory(Num,quantity) VALUES(?,?);";
                         $prepared2 = $pdo2->prepare($sql2);
                         $prepared2->execute(array($item[0],10));   // item number from legacy_DB
+                        
+                        $initialized = true;
                 }
                 
 

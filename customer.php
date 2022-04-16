@@ -78,10 +78,15 @@
         $sql = "SELECT * FROM parts;";
 	foreach($pdo->query($sql) as $item)
 	{
-                // initialize inventory table
-		$sql2 = "INSERT INTO Inventory(Num,quantity) VALUES(?,?);";
-		$prepared2 = $pdo2->prepare($sql2);
-		$prepared2->execute(array($item[0],10));   // item number from legacy_DB
+                $initialized = false;
+                if(!$initialized)       // only initialize once
+                {
+                        // initialize inventory table
+                        $sql2 = "INSERT INTO Inventory(Num,quantity) VALUES(?,?);";
+                        $prepared2 = $pdo2->prepare($sql2);
+                        $prepared2->execute(array($item[0],10));   // item number from legacy_DB
+                }
+                
 
                 //get data from inventory table
 		$sql2 = "SELECT * FROM Inventory WHERE Num = ?;";

@@ -19,11 +19,11 @@
         include("secrets.php");
 
         // Connecting to the legacy databse
-        try { // if something goes wrong, an exception is thrown
+        try { 
             $dsn = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
             $pdo = new PDO($dsn, $username, $password);
         }
-        catch(PDOexception $e) { // handle that exception
+        catch(PDOexception $e) { // handle exception
                 echo "Connection to database failed: " . $e->getMessage();
         }
 
@@ -33,8 +33,7 @@
             $dsn2 = "mysql:host=courses;dbname=".$username2;
             $pdo2 = new PDO($dsn2, $username2, $password2);
         }
-        catch(PDOexception $e)
-        {
+        catch(PDOexception $e) { // handle exception
             echo "Connection to database failed: " . $e->getMessage();
         }
 
@@ -51,7 +50,8 @@
 
             $item_exists = true;
         }
-        elseif (!empty($_POST["description"])) //using description
+        //using description
+        elseif (!empty($_POST["description"])) 
         {
             $description = $_POST["description"];
             
@@ -64,7 +64,7 @@
             $item_exists = true;
         }
         else{
-            echo "ERROR- Product ID or Description required";
+            echo "ERROR - Product ID or Description required";
         }
 
         // used to update quanitity row with desk clerk's input
@@ -80,13 +80,6 @@
             echo "\n updated quantity:" . $quantity. "successfully";
         }
 
-        // $product
-
-        // $sql = 'SELECT name, colour, calories
-        // FROM fruit
-        // WHERE calories < :calories AND colour = :colour';
-        // $sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        // $sth->execute(array('calories' => 150, 'colour' => 'red'));
     ?>
 </body>
 </html>

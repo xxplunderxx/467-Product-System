@@ -71,14 +71,16 @@
         if($item_exists)
         {
             $quantity = $_POST["quantity"];
-            $sql = "UPDATE Inventory SET quantity = ? WHERE num = $product;";
+            $sql = "UPDATE Inventory SET quantity = :quantity WHERE num = :product;";
 
-            $prepared = $pdo2->prepare($sql);
-            $prepared->execute(array($quantity));
+            $prepared = $pdo2->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+            $prepared->execute(array('quantity'=>$quantity, 'product'=>$product));
             $row = $prepared->fetch();
 
             echo "\n updated quantity:" . $quantity. "successfully";
         }
+
+        // $product
 
         // $sql = 'SELECT name, colour, calories
         // FROM fruit

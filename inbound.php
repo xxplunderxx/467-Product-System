@@ -68,7 +68,9 @@
             }
         }
         else{
-            echo "ERROR - Product ID or Description required";
+            if ($product || $description) { // check if user inputed data before error
+                echo "Product ID or Description required";
+            }
         }
 
         // used to update quanitity row with desk clerk's input
@@ -84,8 +86,11 @@
             echo "\n updated quantity:" . $quantity. "successfully";
             echo $item_exists;
         }
-        else {
-            echo "item ".$product. " does not exist";
+        else  
+        {
+            if ($product || $description) { // check if user inputed data before error
+                echo "item ".$product. " does not exist";
+            }
         }
 
     ?>

@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
+        <a href="./checkout.php"><button>Checkout</button></a>
 </head>
 <body>
 <?php
@@ -77,10 +78,17 @@
         $sql = "SELECT * FROM parts;";
 	foreach($pdo->query($sql) as $item)
 	{
-		$sql2 = "INSERT INTO Inventory(Num) VALUES(?);";
-		$prepared2 = $pdo2->prepare($sql2);
-		$prepared2->execute(array($item[0]));   // item number from legacy_DB
+                $initialized = false;
+                if(!$initialized)       // only initialize once
+                {
+                        // initialize inventory table
+                        $sql2 = "INSERT INTO Inventory(Num,quantity) VALUES(?,?);";
+                        $prepared2 = $pdo2->prepare($sql2);
+                        $prepared2->execute(array($item[0],10));   // item number from legacy_DB
+                }
+                
 
+                //get data from inventory table
 		$sql2 = "SELECT * FROM Inventory WHERE Num = ?;";
 		$prepared2 = $pdo2->prepare($sql2);
 		$prepared2->execute(array($item[0]));   // item number from new_DB
@@ -94,29 +102,13 @@
                         echo "<td>" . $prod[1] . "</td>";
                         echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php\" method=\"POST\">";
                                 echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;";
-                                echo "<input type=\"text\" name=\"quantity\"/>";
+                                echo "<input type=\"text\" name=\"quantity\" required/>";
                                 echo "<input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/>";
                         echo "</td></form>";
                 echo "</tr>";
 	}
         // closes the table that we started above php block
         echo "</table>";
-
-        //tests what is inside the shopping cart
-        if(!empty($_SESSION["shopping_cart"])) 
-        {
-                //print_r($_SESSION['shopping_cart']);
-                foreach($_SESSION as $value)
-                {
-                        foreach($value as $index)
-                        {
-                                print_r($index);
-                        }
-                }
-        }
-        else{
-                echo "there is no data";
-        }
 ?>
 </body>
 </html>

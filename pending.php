@@ -50,10 +50,22 @@
     foreach($pdo2->query($sql) as $item)
     {
         echo "<tr>";
-
-        echo "<tr/>";
+            echo "<td>". $item[0] . "</td>";
+            echo "<td>". $item[1] . "</td>";
+            echo "<td>". $item[2] . "</td>";
+            echo "<td>". $item[3] . "</td>";
+            echo "<td>". $item[4] . "</td>";
+            echo "<td>". $item[5] . "</td>";
+            echo "<td>". $item[6] . "</td>";
+            echo "<td>". $item[7] . "</td>";
+            echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/order_product.php\" method=\"POST\">";
+                echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;";
+                echo "<input type=\"submit\" name=\"inspect_order\" value=\"Inspect Order\"/>";
+            echo "</td></form>";
+        echo "</tr>";
     }
 
+    // closes off html table open tag
     echo "<table/>";
 ?>
 </body>

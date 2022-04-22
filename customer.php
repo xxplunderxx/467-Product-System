@@ -8,6 +8,19 @@
         <title>Product System</title>
         <a href="./checkout.php"><button>Checkout</button></a>
 </head>
+<style>
+h1{
+        color: black;
+        font-family: verdana;
+        font-size: 300%;
+        text-align: center
+}
+tr, th{
+        text-align: center;
+        vertical-align: center;
+        border: 1px solid black
+}
+</style>
 <body>
 <?php
         include 'secrets.php';
@@ -63,7 +76,7 @@
         }
 ?>
     <h1>Products</h1>
-        <table border=2>
+        <table border=2 style="margin-left:auto;margin-right:auto;"> 
                 <tr>
                         <th>Product</th>
                         <th>Description</th>

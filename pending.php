@@ -60,7 +60,7 @@
             echo "<td>". $item[6] . "</td>";
             echo "<td>". $item[7] . "</td>";
             echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/order_product.php\" method=\"POST\">";
-                echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;";
+                echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />";
                 echo "<input type=\"submit\" name=\"inspect_order\" value=\"Inspect Order\"/>";
             echo "</td></form>";
         echo "</tr>";

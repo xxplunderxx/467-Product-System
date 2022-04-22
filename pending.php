@@ -33,6 +33,7 @@
     <title>Pending Order View</title>
 </head>
 <body>
+    <a href="./completed.php"><button>Completed Orders</button></a>
     <table border=2>
         <tr>
             <th>Order Num</th>
@@ -45,7 +46,7 @@
             <th>Weight</th>
         </tr>
 <?php
-    // query all pending orders (on the Order_info table)
+    // show all pending orders (on the Order_info table)
     $sql = "SELECT * FROM Order_Info WHERE status = 'pending';";
     foreach($pdo2->query($sql) as $item)
     {

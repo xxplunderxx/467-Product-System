@@ -60,7 +60,7 @@
             }
         }
         else {
-            echo "ERROR - FORM WAS NOT SENT PROPERLY";
+            echo "ERROR - FORM HAS NOT BEEN SENT";
         }
 
     ?>

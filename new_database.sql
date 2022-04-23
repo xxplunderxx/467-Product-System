@@ -19,7 +19,7 @@ CREATE TABLE Order_Info(
 	cust_email	CHAR(40)	NOT NULL,
 	total_price	DECIMAL(8,2)	NOT NULL,
 	status		CHAR(12)	NOT NULL,
-	date		DATE	NOT NULL,
+	date		DATE	DEFAULT CURRENT_TIMESTAMP,
 	total_weight	DECIMAL(8,2)	NOT NULL,
 	PRIMARY KEY (Order_ID)
 );

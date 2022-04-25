@@ -1,13 +1,6 @@
 <?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product System</title>
-        <a href="./checkout.php"><button>Checkout</button></a>
-</head>
 <style>
 h1{
         color: black;
@@ -20,7 +13,18 @@ tr, th{
         vertical-align: center;
         border: 1px solid black
 }
+.button {
+        color: green;
+        border: none
+}
 </style>
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product System</title>
+        <a href="./checkout.php" class="button">Checkout</a>
+</head>
 <body>
 <?php
         include 'secrets.php';
@@ -115,7 +119,7 @@ tr, th{
                         echo "<td>$" . $item[2] . "</td>";
                         echo "<td>" . $item[3] . "lbs.</td>";
                         echo "<td>" . $prod[1] . "</td>";
-                        echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php\" method=\"POST\">";
+                        echo "<td><form action=\"http://students.cs.niu.edu/~z1892      587/467-Product-System/customer.php\" method=\"POST\">";
                                 echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />Quantity:&nbsp;";
                                 echo "<input type=\"text\" name=\"quantity\" required/>";
                                 echo "<input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\"/>";

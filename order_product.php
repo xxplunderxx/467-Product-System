@@ -122,7 +122,7 @@
                 // update inventory with new quantity
                 $sql = "UPDATE Inventory SET quantity = $new_quantity WHERE Num = $product_id;";
                 if($pdo2->query($sql)) {
-                    echo "Invenotry was updated successfully";
+                    echo "Invenotry was updated successfully- ";
                 }
                 else {
                     echo "error in updating inventory";
@@ -132,7 +132,15 @@
             // update status
             $sql3 = "UPDATE Order_Info SET status = 'completed' WHERE Order_ID = $order_id;";
             if ($pdo2->query($sql3)) {
-                echo "Successfully Changed Order to Completed";
+                echo "Successfully Changed Order to Completed<br/>";
+
+                // send fake email
+                // query orders table
+                $sql = "SELECT * FROM Order_Info WHERE Order_ID = $order_id;";
+                $result = $pdo2->query($sql);
+                $order = $result->fetch(PDO::FETCH_ASSOC);
+
+                echo "email was sent to adress: ". $order["cust_email"];
             }
         }
     // make shipping labels and send email
@@ -163,6 +171,7 @@
 
         // end invoice table
         echo "</table>";
+
     ?>
 
     <h2>Shpping Label</h2>

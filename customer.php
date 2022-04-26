@@ -1,11 +1,52 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+h1{
+        color: black;
+        font-family: verdana;
+        font-size: 300%;
+        text-align: center
+}
+tr, th{
+        text-align: center;
+        vertical-align: center;
+        border: 1px solid black;
+        background: white
+        
+}
+th{
+        background-color: #104b78;
+        color: white
+}
+.button{
+        color: BLACK;
+        background-color: #3175a8; 
+        padding: 15px 32px;
+        border: none;
+        display: inline-block;
+        margin: 4px 2px;
+        border-radius: 12px;
+        font-family: Fantasy;
+        text-decoration: none;
+}
+a.button:hover, a.button:active{
+        color: BLACK;
+        background-color: #419ade;
+}
+body{
+        background-image: linear-gradient(#304352, #d7d2cc);
+
+}
+
+</style>
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Car Parts Store</title>
+        <title>Product System</title>
+        <a href="./checkout.php" class="button">CHECKOUT 🛒</a>
+        <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
 </head>
 <body>
 
@@ -100,6 +141,20 @@
 	//-**********************************************************************
 	if(isset($_POST['view_cart']))
         {
+
+                echo "Connection to database failed: " . $e->getMessage();
+        }
+?>
+    <h1>Products</h1>
+        <table border=2 style="margin-left:auto;margin-right:auto;"> 
+                <tr>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Weight</th>
+                        <th>Available</th>
+                </tr>
+<?php
 		// variables to hold details regarding cart totals
 		$amount = 0;
 		$weight = 0;
@@ -150,7 +205,8 @@
 			echo "</tr>";
 
 			// Add product price and weight to totals
-			$amount += ($prod[2] * $item["item_quantity"]);
+			$
+          += ($prod[2] * $item["item_quantity"]);
 			$weight += ($prod[3] * $item["item_quantity"]);
 		}
 		echo "</table>";

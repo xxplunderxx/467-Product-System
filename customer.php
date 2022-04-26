@@ -1,65 +1,26 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-<style>
-h1{
-        color: black;
-        font-family: verdana;
-        font-size: 300%;
-        text-align: center
-}
-tr, th{
-        text-align: center;
-        vertical-align: center;
-        border: 1px solid black;
-        background: white
-        
-}
-th{
-        background-color: #104b78;
-        color: white
-}
-.button{
-        color: BLACK;
-        background-color: #3175a8; 
-        padding: 15px 32px;
-        border: none;
-        display: inline-block;
-        margin: 4px 2px;
-        border-radius: 12px;
-        font-family: Fantasy;
-        text-decoration: none;
-}
-a.button:hover, a.button:active{
-        color: BLACK;
-        background-color: #419ade;
-}
-body{
-        background-image: linear-gradient(#304352, #d7d2cc);
-
-}
-
-</style>
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product System</title>
-        <a href="./checkout.php" class="button">CHECKOUT 🛒</a>
-        <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+        <title>Car Parts Store</title>
 </head>
 <body>
 
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1886085/customer.php" method=POST>
                 <input type="submit" name="view_products" value="View Products"> </form>
-                
+
         &nbsp;
 
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1886085/customer.php" method=POST>
                 <input type="submit" name="view_cart" value="View Cart"> </form>
 
 <?php
         include 'secrets.php';
+
+	// Start the session to keep track of session variables (i.e)
+	session_start();
 
 	// Set the shopping cart to empty array if null
 	if(!(isset($_SESSION['shopping_cart']))) {
@@ -141,20 +102,6 @@ body{
 	//-**********************************************************************
 	if(isset($_POST['view_cart']))
         {
-
-                echo "Connection to database failed: " . $e->getMessage();
-        }
-?>
-    <h1>Products</h1>
-        <table border=2 style="margin-left:auto;margin-right:auto;"> 
-                <tr>
-                        <th>Product</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Weight</th>
-                        <th>Available</th>
-                </tr>
-<?php
 		// variables to hold details regarding cart totals
 		$amount = 0;
 		$weight = 0;
@@ -163,7 +110,7 @@ body{
 		$num_items = count($_SESSION["shopping_cart"]);
 		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
 		echo '&nbsp;';
-		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
+		echo '<form action="http://students.cs.niu.edu/~z1886085/customer.php" method=POST>';
                 echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
 		echo '<h1>Shopping Cart</h1>';
                 echo '<table border=2>';
@@ -205,8 +152,7 @@ body{
 			echo "</tr>";
 
 			// Add product price and weight to totals
-			$
-          += ($prod[2] * $item["item_quantity"]);
+			$amount += ($prod[2] * $item["item_quantity"]);
 			$weight += ($prod[3] * $item["item_quantity"]);
 		}
 		echo "</table>";
@@ -429,5 +375,7 @@ body{
                 echo "</table>";
 	}
 ?>
+
+
 </body>
 </html>

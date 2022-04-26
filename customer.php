@@ -13,9 +13,20 @@ tr, th{
         vertical-align: center;
         border: 1px solid black
 }
-.button {
-        color: green;
-        border: none
+.button{
+        color: BLACK;
+        background-color: #BC544B; 
+        padding: 15px 32px;
+        border: none;
+        display: inline-block;
+        margin: 4px 2px;
+        border-radius: 12px;
+        font-family: Fantasy;
+        text-decoration: none
+}
+a.button:hover, a.button:active{
+        color: BLACK;
+        background-color: #D18983;
 }
 </style>
 <head>
@@ -23,7 +34,7 @@ tr, th{
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
-        <a href="./checkout.php" class="button">Checkout</a>
+        <a href="./checkout.php" class="button">CHECKOUT 🛒</a>
 </head>
 <body>
 <?php

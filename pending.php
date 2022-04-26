@@ -23,7 +23,13 @@
         echo "Connection to database failed: " . $e->getMessage();
     }
 ?>
-
+<?php include 'worker.php'; ?>
+<html 
+    h2{
+     color: black;
+     font-family: verdana;
+     font-size: 300%;
+    } >
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +39,7 @@
     <title>Pending Order View</title>
 </head>
 <body>
-    <a href="./completed.php"><button>Completed Orders</button></a>
+    <h2>Pending Orders</h2>
     <table border=2>
         <tr>
             <th>Order Num</th>

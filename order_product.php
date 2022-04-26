@@ -93,34 +93,37 @@
         {
             $order_id = $_POST["ord_hidden"];
 
-            // query old Inventory
-            $sql = "SELECT * FROM Inventory WHERE num = $order_id;";
+            // query all products held in Order
+            $sql = "SELECT * FROM Order_Prod WHERE Order_ID = $order_id;";
             $result = $pdo2->query($sql);
-
-            
-            // output data of each row
             while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                $Num = $row["Num"];
-                $quantity = $row["quantity"];
+                echo "\nOrder ID: ". $row["Order_ID"] . "Product ID: ". $row["prod_ID"]. "amount: ". $row["amount"];
+                $product_id = $row["prod_ID"];
+                $amount = $row["amount"];
 
-                // go through each item that is stored in that order
-                $sql = "SELECT * FROM Order_Prod WHERE Order_ID = $order_id;";
-                foreach($pdo2->query($sql) as $item)
-                {
-                    $new_quantity = $quantity - $item[2];
+                // get old quantity
+                $sql = "SELECT * FROM Inventory WHERE Num = $product_id;";
+                $result = $pdo2->query($sql);
+                $quantity = $result->fetch(PDO::FETCH_ASSOC);
+                
+                $new_quantity = $quantity["quantity"] - $amount;
 
-                    // update items in Inventory table with new quantity after order
-                    $sql2 = "UPDATE Inventory SET quantity = $new_quantity WHERE num = $Num;";
-                    $result = $pdo2->query($sql2);             
+                //update inventory with new quantity
+                $sql = "UPDATE Inventory SET quantity = $new_quantity WHERE Num = $product_id;";
+                if($pdo2->query($sql)) {
+                    echo "Invenotry was updated successfully";
+                }
+                else {
+                    echo "error in updating inventory";
                 }
             }
 
             // update status
-            $sql3 = "UPDATE Order_Info SET status = 'completed' WHERE Order_ID = $order_id;";
-            if ($pdo2->query($sql3)) {
-                header('Refresh: 1; url=pending.php');    // refresh the page after changing status
-                echo "Successfully Changed Order to Completed";
-            }
+            // $sql3 = "UPDATE Order_Info SET status = 'completed' WHERE Order_ID = $order_id;";
+            // if ($pdo2->query($sql3)) {
+            //     header('Refresh: 1; url=pending.php');    // refresh the page after changing status
+            //     echo "Successfully Changed Order to Completed";
+            // }
         }
     ?>
 </body>

@@ -57,6 +57,5 @@
             <li><a href="outbound.php">View Outbound Products</a></li>
             <li><a href="completed.php">Completed Orders</a></li>
         </ul>
-        <h3>We apreciate our Associates</h3>
     </body>
 </html>

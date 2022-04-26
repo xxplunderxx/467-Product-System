@@ -23,7 +23,7 @@
         echo "Connection to database failed: " . $e->getMessage();
     }
 ?>
-
+<?php include 'worker.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,6 @@
     <title>Order Product View</title>
 </head>
 <body>
-    <a href="./pending.php"><button>Order View</button></a>
     <h1>Order Inspection</h1>
     <table border=2>
         <tr>

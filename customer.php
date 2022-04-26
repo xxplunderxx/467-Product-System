@@ -11,23 +11,34 @@ h1{
 tr, th{
         text-align: center;
         vertical-align: center;
-        border: 1px solid black
+        border: 1px solid black;
+        background: white
+        
+}
+th{
+        background-color: #104b78;
+        color: white
 }
 .button{
         color: BLACK;
-        background-color: #BC544B; 
+        background-color: #3175a8; 
         padding: 15px 32px;
         border: none;
         display: inline-block;
         margin: 4px 2px;
         border-radius: 12px;
         font-family: Fantasy;
-        text-decoration: none
+        text-decoration: none;
 }
 a.button:hover, a.button:active{
         color: BLACK;
-        background-color: #D18983;
+        background-color: #419ade;
 }
+body{
+        background-image: linear-gradient(#304352, #d7d2cc);
+
+}
+
 </style>
 <head>
         <meta charset="UTF-8">
@@ -35,6 +46,7 @@ a.button:hover, a.button:active{
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
         <a href="./checkout.php" class="button">CHECKOUT 🛒</a>
+        <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
 </head>
 <body>
 <?php

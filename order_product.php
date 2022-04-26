@@ -118,11 +118,11 @@
             }
 
             // update status
-            // $sql3 = "UPDATE Order_Info SET status = 'completed' WHERE Order_ID = $order_id;";
-            // if ($pdo2->query($sql3)) {
-            //     header('Refresh: 1; url=pending.php');    // refresh the page after changing status
-            //     echo "Successfully Changed Order to Completed";
-            // }
+            $sql3 = "UPDATE Order_Info SET status = 'completed' WHERE Order_ID = $order_id;";
+            if ($pdo2->query($sql3)) {
+                header('Refresh: 1; url=pending.php');    // refresh the page after changing status
+                echo "Successfully Changed Order to Completed";
+            }
         }
     ?>
 </body>

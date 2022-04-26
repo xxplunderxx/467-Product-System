@@ -95,11 +95,10 @@
 
             // query all products held in Order
             $sql = "SELECT * FROM Order_Prod WHERE Order_ID = $order_id;";
-            $result = $pdo2->query($sql);
-            while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                echo "\nOrder ID: ". $row["Order_ID"] . "Product ID: ". $row["prod_ID"]. "amount: ". $row["amount"];
-                $product_id = $row["prod_ID"];
-                $amount = $row["amount"];
+            foreach($pdo2->query($sql) as $row) {
+                echo "\nOrder ID: ". $row[0] . "Product ID: ". $row[1]. "amount: ". $row[2];
+                $product_id = $row[1];
+                $amount = $row[2];
 
                 // get old quantity
                 $sql = "SELECT * FROM Inventory WHERE Num = $product_id;";

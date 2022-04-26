@@ -50,19 +50,16 @@ body{
 </head>
 <body>
 
-        <form action="http://students.cs.niu.edu/~z1886085/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
                 <input type="submit" name="view_products" value="View Products"> </form>
 
         &nbsp;
 
-        <form action="http://students.cs.niu.edu/~z1886085/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
                 <input type="submit" name="view_cart" value="View Cart"> </form>
 
 <?php
-        include 'secrets.php';
-
-	// Start the session to keep track of session variables (i.e)
-	session_start();
+    include 'secrets.php';
 
 	// Set the shopping cart to empty array if null
 	if(!(isset($_SESSION['shopping_cart']))) {
@@ -152,7 +149,7 @@ body{
 		$num_items = count($_SESSION["shopping_cart"]);
 		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
 		echo '&nbsp;';
-		echo '<form action="http://students.cs.niu.edu/~z1886085/customer.php" method=POST>';
+		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
                 echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
 		echo '<h1>Shopping Cart</h1>';
                 echo '<table border=2>';

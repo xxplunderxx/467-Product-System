@@ -25,5 +25,5 @@ Alexandra Alcantar,
 Jacob Eul,
 Julia Finegan
 
-# MAIN LINK
+# Main Link
 http://students.cs.niu.edu/~z1892587/467-Product-System/

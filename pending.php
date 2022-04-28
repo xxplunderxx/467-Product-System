@@ -66,31 +66,14 @@
             echo "<td>". $item[6] . "</td>";
             echo "<td>". $item[7] . "</td>";
             echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/order_product.php\" method=\"POST\">";
-                echo "<input type=\"hidden\" name=\"prod_hidden\" value=\"$item[0]\" />";
-                echo "<input type=\"submit\" name=\"inspect_order\" value=\"Inspect Order\"/>";
-            echo "</td></form>";
-            echo "<td><form action=\"http://students.cs.niu.edu/~z1892587/467-Product-System/pending.php\" method=\"POST\">";
-                echo "<input type=\"hidden\" name=\"pend_hidden\" value=\"$item[0]\" />";
-                echo "<input type=\"submit\" name=\"complete_order\" value=\"Complete Order\"/>";
+                echo "<input type=\"hidden\" name=\"pending_hidden\" value=\"$item[0]\"/>";
+                echo "<input type=\"submit\" name=\"inspect_pending\" value=\"Inspect\"/>";
             echo "</td></form>";
         echo "</tr>";
     }
 
     // closes off html table open tag
     echo "<table/>";
-
-    //complete a pending order
-    if(isset($_POST["complete_order"]) && isset($_POST["pend_hidden"]))
-    {
-        $order_id = $_POST["pend_hidden"];
-
-        // update status
-        $sql2 = "UPDATE Order_Info SET status = 'completed' WHERE Order_ID = $order_id;";
-        if ($pdo2->query($sql2)) {
-            echo "Successfully Changed Order to Completed";
-            header('Refresh: 1; url=pending.php');    // refresh the page after changing status
-        }
-    }
 ?>
 </body>
 </html>

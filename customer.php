@@ -47,9 +47,9 @@ body{
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
         <a href="./checkout.php" class="button">CHECKOUT 🛒</a>
+        <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
 </head>
 <body>
-        
         <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
                 <input type="submit" name="view_products" value="View Products"> </form>
 

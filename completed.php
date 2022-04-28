@@ -23,7 +23,7 @@
         echo "Connection to database failed: " . $e->getMessage();
     }
 ?>
-
+<?php include 'worker.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

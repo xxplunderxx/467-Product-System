@@ -41,6 +41,7 @@ body{
 
 </style>
 <head>
+        <?php include 'header.php';?>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +50,6 @@ body{
         <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
 </head>
 <body>
-
         <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
                 <input type="submit" name="view_products" value="View Products"> </form>
 
@@ -177,7 +177,7 @@ body{
 			array_push($products, $prod[0]);
 			array_push($quantity, $item["item_quantity"]);
 
-			// Display all the products in the sopping cart
+			// Display all the products in the shopping cart
 			echo "<tr>";
 				echo "<td><img src=\"" . $prod[4] . "\"></td>";
 				echo "<td>". $prod[1] . "</td>";

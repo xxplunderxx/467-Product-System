@@ -33,3 +33,9 @@ CREATE TABLE Order_Prod(
 	FOREIGN KEY (Order_ID) REFERENCES Order_Info(Order_ID),
 	FOREIGN KEY (prod_ID) REFERENCES Inventory (Num)
 );
+
+CREATE TABLE User(
+	name CHAR(16) NOT NULL,
+	password CHAR(64) NOT NULL,
+	PRIMARY KEY (name)
+);

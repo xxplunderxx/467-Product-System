@@ -39,6 +39,7 @@
 
         //check to see if item exists in legacy database
         //using product ID
+        $item_exists = false;
         if (!empty($_POST["product_id"]))
         {
             $product = $_POST["product_id"];
@@ -68,12 +69,13 @@
             }
         }
         else{
-            if ($product || $description) { // check if user inputed data before error
+            if (isset($_POST["product_id"]) || isset($_POST["description"])) { // check if user inputed data before error
                 echo "Product ID or Description required";
             }
         }
 
         // used to update quanitity row with desk clerk's input
+        // update additional quanity not just quantity
         if($item_exists)
         {
             $quantity = $_POST["quantity"];
@@ -88,7 +90,7 @@
         }
         else  
         {
-            if ($product || $description) { // check if user inputed data before error
+            if (isset($_POST["product_id"]) || isset($_POST["description"])) { // check if user inputed data before error
                 echo "item ".$product. " does not exist";
             }
         }

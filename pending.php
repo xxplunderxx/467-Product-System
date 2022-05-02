@@ -39,8 +39,8 @@
     <title>Pending Order View</title>
 </head>
 <body>
-    <h2>Pending Orders</h2>
-    <table border=2>
+    <h2><center>Pending Orders</center></h2>
+    <table border=2; style="margin-left:auto;margin-right:auto;">
         <tr>
             <th>Order Num</th>
             <th>Name</th>

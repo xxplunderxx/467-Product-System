@@ -12,8 +12,9 @@ tr, th{
         text-align: center;
         vertical-align: center;
         border: 1px solid black;
-        background: white
-        
+        background: white;
+		margin-left:auto;
+		margin-right:auto       
 }
 th{
         background-color: #104b78;
@@ -30,34 +31,36 @@ th{
         font-family: Fantasy;
         text-decoration: none;
 }
-a.button:hover, a.button:active{
+.button:active, .button:hover{
         color: BLACK;
         background-color: #419ade;
+		box-shadow: 0 5px #666;
+        transform: translateY(4px);
 }
 body{
         background-image: linear-gradient(#304352, #d7d2cc);
 
 }
-
 </style>
 <head>
-        <?php include 'header.php';?>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
-        <a href="./checkout.php" class="button">CHECKOUT 🛒</a>
         <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
 </head>
 <body>
+        <center>
         <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-                <input type="submit" name="view_products" value="View Products"> </form>
+                <input type="submit" name="view_products" value="View Products" class="button"> </form>
 
         &nbsp;
 
         <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-                <input type="submit" name="view_cart" value="View Cart"> </form>
 
+                <input type="submit" name="view_cart" value="View Cart" class="button"> </form>
+
+		</center>
 <?php
     include 'secrets.php';
 
@@ -152,7 +155,7 @@ body{
 		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
                 echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
 		echo '<h1>Shopping Cart</h1>';
-                echo '<table border=2>';
+                echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
                         echo '<tr>';
                                 echo '<th>Product</th>';
                                 echo '<th>Description</th>';
@@ -177,7 +180,7 @@ body{
 			array_push($products, $prod[0]);
 			array_push($quantity, $item["item_quantity"]);
 
-			// Display all the products in the shopping cart
+			// Display all the products in the sopping cart
 			echo "<tr>";
 				echo "<td><img src=\"" . $prod[4] . "\"></td>";
 				echo "<td>". $prod[1] . "</td>";
@@ -328,12 +331,12 @@ body{
 	if(!isset($_POST['view_cart']) and !isset($_POST['search_button']) and !isset($_POST['order']) and !isset($_POST['remove'])) {
 		// provides a search bar to limit
 		echo '<form action"' . $_SERVER['PHP_SELF'] . '" method="POST">';
-		echo '<p>Search:&nbsp;<input type="text" name="search">&nbsp;';
-		echo '<input type="submit" name="search_button" value="Search"></p></form>';
+		echo '<center><p>Search:&nbsp;<input type="text" name="search">&nbsp;';
+		echo '<input type="submit" name="search_button" value="Search"></p></center></form>';
 
 		// Creates table
 		echo '<h1>Products</h1>';
-		echo '<table border=2>';
+		echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
 			echo '<tr>';
 				echo '<th>Product</th>';
 				echo '<th>Description</th>';
@@ -378,7 +381,7 @@ body{
 		$search = $_POST['search'];
 
 		echo '<h1>Products</h1>';
-                echo '<table border=2>';
+                echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
                         echo '<tr>';
                                 echo '<th>Product</th>';
                                 echo '<th>Description</th>';

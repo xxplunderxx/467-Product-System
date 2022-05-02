@@ -41,6 +41,29 @@ body{
         background-image: linear-gradient(#304352, #d7d2cc);
 
 }
+li{
+        float: left;
+}
+li a{
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+}
+li a:hover:not(.active){
+  background-color: #111;
+}
+.active{
+  background-color: #04AA6D;
+}
+ul	{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;  
+		overflow: hidden;
+        background-color: #333;
+}
 </style>
 <head>
         <meta charset="UTF-8">
@@ -48,9 +71,16 @@ body{
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
         <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+		<ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="customer.php">Secure Shopping</a></li>
+            <li><a href="worker.php">Associates</a></li>
+            <li style="float:right"><a class="active" href="about.html">About</a></li>
+        </ul>
 </head>
 <body>
-        <center>
+        &nbsp;
+		<center>		
         <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
                 <input type="submit" name="view_products" value="View Products" class="button"> </form>
 

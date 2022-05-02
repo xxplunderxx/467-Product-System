@@ -180,10 +180,10 @@ ul{
 
 		// Displays items in the cart
 		$num_items = count($_SESSION["shopping_cart"]);
-		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
+		echo "<center><h3>You have " . $num_items . " part(s) in your cart</h3></center>";
 		echo '&nbsp;';
 		echo '<form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>';
-                echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
+                echo '<center><input type="submit" name="clear_cart" class="button" value="Clear Cart"> </form></center>';
 		echo '<h1>Shopping Cart</h1>';
                 echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
                         echo '<tr>';
@@ -240,7 +240,7 @@ ul{
 		$count = 0;
 
 		// Prints form for customer info to order table
-		echo "<form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
+		echo "<center><form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
 			echo "<input type=\"hidden\" name=\"total_price\" value=\"" . $total . "\">";
 			echo "<input type=\"hidden\" name=\"total_weight\" value=\"" . $weight . "\">";
 			echo "&emsp;&emsp;&ensp;Name:&nbsp<input type=\"text\" name=\"name\"><br/>";
@@ -248,7 +248,7 @@ ul{
 			echo "&emsp;&ensp;&nbsp;Address:&nbsp<input type=\"text\" name=\"address\"><br/>";
 			echo "&emsp;&emsp;&emsp;&ensp;&nbspCC:&nbsp<input type=\"text\" name=\"cc\"><br/>";
 			echo "&emsp;&emsp;&emsp;&nbsp;Exp.:&nbsp<input type=\"text\" name=\"exp\"><br/><br/>";
-			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\">";
+			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\"></center>";
 		echo "</form>";
 
 	} // view  cart

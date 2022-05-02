@@ -33,7 +33,6 @@
     <title>Completed Order View</title>
 </head>
 <body>
-    <a href="./pending.php"><button>Pending View</button></a>
     <table border=2>
         <tr>
             <th>Order Num</th>

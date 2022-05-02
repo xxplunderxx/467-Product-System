@@ -57,7 +57,7 @@ li a:hover:not(.active){
 .active{
   background-color: #04AA6D;
 }
-ul	{
+ul{
         list-style-type: none;
         margin: 0;
         padding: 0;  
@@ -81,12 +81,12 @@ ul	{
 <body>
         &nbsp;
 		<center>		
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
                 <input type="submit" name="view_products" value="View Products" class="button"> </form>
 
         &nbsp;
 
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
 
                 <input type="submit" name="view_cart" value="View Cart" class="button"> </form>
 
@@ -182,7 +182,7 @@ ul	{
 		$num_items = count($_SESSION["shopping_cart"]);
 		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
 		echo '&nbsp;';
-		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
+		echo '<form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>';
                 echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
 		echo '<h1>Shopping Cart</h1>';
                 echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
@@ -232,10 +232,10 @@ ul	{
 		$shipping = 0;
 		$total = $amount + $shipping;
 		// Print billing information and allow for checkout
-		echo "<h4>Billing Information</h4>";
-		echo "<p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
+		echo "<h4><center>Billing Information</center></h4>";
+		echo "<center><p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
 		echo "&emsp;&emsp;Weight: " . $weight . "lbs.<br/>";
-		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p>";
+		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p></center>";
 
 		$count = 0;
 

@@ -33,3 +33,13 @@ CREATE TABLE Order_Prod(
 	FOREIGN KEY (Order_ID) REFERENCES Order_Info(Order_ID),
 	FOREIGN KEY (prod_ID) REFERENCES Inventory (Num)
 );
+
+CREATE TABLE User(
+	User_name CHAR(16) NOT NULL,
+	password  CHAR(64) NOT NULL,
+	status    CHAR(16) DEFAULT "default",
+	PRIMARY KEY (User_name)
+);
+#upgrade user status
+#fill in ? with username 
+# UPDATE User SET status = 'worker' WHERE User_name = '?';

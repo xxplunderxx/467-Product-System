@@ -45,7 +45,7 @@
         </style>
         <div class="container">
         <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
-        <div class="centered"> Name</div>
+        <div class="centered"> Da Store</div>
     </div>
     </head>
     <body>

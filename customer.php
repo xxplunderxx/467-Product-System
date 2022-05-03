@@ -12,9 +12,8 @@ tr, th{
         text-align: center;
         vertical-align: center;
         border: 1px solid black;
-        background: white;
-		margin-left:auto;
-		margin-right:auto       
+        background: white
+
 }
 th{
         background-color: #104b78;
@@ -22,7 +21,7 @@ th{
 }
 .button{
         color: BLACK;
-        background-color: #3175a8; 
+        background-color: #3175a8;
         padding: 15px 32px;
         border: none;
         display: inline-block;
@@ -31,66 +30,35 @@ th{
         font-family: Fantasy;
         text-decoration: none;
 }
-.button:active, .button:hover{
+a.button:hover, a.button:active{
         color: BLACK;
         background-color: #419ade;
-		box-shadow: 0 5px #666;
-        transform: translateY(4px);
 }
 body{
         background-image: linear-gradient(#304352, #d7d2cc);
 
 }
-li{
-        float: left;
-}
-li a{
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-}
-li a:hover:not(.active){
-  background-color: #111;
-}
-.active{
-  background-color: #04AA6D;
-}
-ul{
-        list-style-type: none;
-        margin: 0;
-        padding: 0;  
-		overflow: hidden;
-        background-color: #333;
-}
+
 </style>
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
-        <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
-		<ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="customer.php">Secure Shopping</a></li>
-            <li><a href="worker.php">Associates</a></li>
-            <li style="float:right"><a class="active" href="about.html">About</a></li>
-        </ul>
+	<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        <input type="submit" name="view_cart" value="CHECKOUT"> </form>
+	<img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
 </head>
 <body>
-        &nbsp;
-		<center>		
-        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
-                <input type="submit" name="view_products" value="View Products" class="button"> </form>
+
+        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+                <input type="submit" name="view_products" value="View Products"> </form>
 
         &nbsp;
 
-        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+                <input type="submit" name="view_cart" value="View Cart"> </form>
 
-                <input type="submit" name="view_cart" value="View Cart" class="button"> </form>
-
-		</center>
 <?php
     include 'secrets.php';
 
@@ -130,33 +98,33 @@ ul{
 		// Sets the shopping cart with new item if not empty
                 if(isset($_SESSION['shopping_cart'][0]))
                 {
-                	// check item added to cart is already in the session
-					//	if not it just sets the quantity to the amount in the
-					//	written in the text box
-					$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-					if(!in_array($_POST["prod_hidden"], $item_array_id))
-					{
-						// finds the count of the next open position in shopping cart array
-						// and add new item
-						$count = count($_SESSION["shopping_cart"]);
-						$item_array = array(
-								'item_id' => $_POST["prod_hidden"],
-								'item_quantity' => $_POST["quantity"]
-						);
-						$_SESSION["shopping_cart"][$count] = $item_array;   // store after previous items
-                    }
-					// If item already is already stored add to the current quantity
-                    else{   // we know item is already stored in the session
-						$count = array_search($_POST["prod_hidden"], $item_array_id);
-						$item_quantity = $_SESSION["shopping_cart"][$count]["item_quantity"] + $_POST["quantity"];
-						$item_array = array (
-							'item_id' => $_POST["prod_hidden"],
-							'item_quantity' => $item_quantity
-						);
-						$_SESSION["shopping_cart"][$count] = $item_array;
-                    }
+                        // check item added to cart is already in the session
+			//	if not it just sets the quantity to the amount in the
+			//	written in the text box
+                        $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+                        if(!in_array($_POST["prod_hidden"], $item_array_id))
+                        {
+				// finds the count of the next open position in shopping cart array
+				// and add new item
+                                $count = count($_SESSION["shopping_cart"]);
+                                $item_array = array(
+                                        'item_id' => $_POST["prod_hidden"],
+                                        'item_quantity' => $_POST["quantity"]
+                                );
+                                $_SESSION["shopping_cart"][$count] = $item_array;   // store after previous items
+                        }
+			// If item already is already stored add to the current quantity
+                        else{   // we know item is already stored in the session
+				$count = array_search($_POST["prod_hidden"], $item_array_id);
+				$item_quantity = $_SESSION["shopping_cart"][$count]["item_quantity"] + $_POST["quantity"];
+				$item_array = array (
+					'item_id' => $_POST["prod_hidden"],
+					'item_quantity' => $item_quantity
+				);
+				$_SESSION["shopping_cart"][$count] = $item_array;
+                        }
                 }
-				// If shopping cart is empty add item to first position in array
+		// If shopping cart is empty add item to first position in array
                 else
                 {
                         $item_array = array(
@@ -165,6 +133,7 @@ ul{
                         );
                         $_SESSION["shopping_cart"][0] = $item_array;
                 }
+
         } // add to cart
 
         //-**********************************************************************
@@ -179,12 +148,12 @@ ul{
 
 		// Displays items in the cart
 		$num_items = count($_SESSION["shopping_cart"]);
-		echo "<center><h3>You have " . $num_items . " part(s) in your cart</h3></center>";
+		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
 		echo '&nbsp;';
-		echo '<form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>';
-                echo '<center><input type="submit" name="clear_cart" class="button" value="Clear Cart"> </form></center>';
+		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
+                echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
 		echo '<h1>Shopping Cart</h1>';
-                echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
+                echo '<table border=2>';
                         echo '<tr>';
                                 echo '<th>Product</th>';
                                 echo '<th>Description</th>';
@@ -228,18 +197,28 @@ ul{
 		}
 		echo "</table>";
 
+                $sql = 'SELECT * FROM Weights WHERE low <= ? AND high > ?;';
+                $prepared = $pdo2->prepare($sql);
+                $prepared->execute(array($weight,$weight));
+                $bracket = $prepared->fetch();
+
 		$shipping = 0;
+
+		if(!is_bool($bracket)) {
+			$bracket[3];
+		}
 		$total = $amount + $shipping;
 		// Print billing information and allow for checkout
-		echo "<h4><center>Billing Information</center></h4>";
-		echo "<center><p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
+		echo "<h4>Billing Information</h4>";
+		echo "<p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
 		echo "&emsp;&emsp;Weight: " . $weight . "lbs.<br/>";
-		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p></center>";
+                echo "&emsp;&nbsp;Shipping: $" . $shipping . "<br/>";
+		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p>";
 
 		$count = 0;
 
 		// Prints form for customer info to order table
-		echo "<center><form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
+		echo "<form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
 			echo "<input type=\"hidden\" name=\"total_price\" value=\"" . $total . "\">";
 			echo "<input type=\"hidden\" name=\"total_weight\" value=\"" . $weight . "\">";
 			echo "&emsp;&emsp;&ensp;Name:&nbsp<input type=\"text\" name=\"name\"><br/>";
@@ -247,7 +226,7 @@ ul{
 			echo "&emsp;&ensp;&nbsp;Address:&nbsp<input type=\"text\" name=\"address\"><br/>";
 			echo "&emsp;&emsp;&emsp;&ensp;&nbspCC:&nbsp<input type=\"text\" name=\"cc\"><br/>";
 			echo "&emsp;&emsp;&emsp;&nbsp;Exp.:&nbsp<input type=\"text\" name=\"exp\"><br/><br/>";
-			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\"></center>";
+			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\">";
 		echo "</form>";
 
 	} // view  cart
@@ -279,8 +258,8 @@ ul{
 		// connects to the credit card processing system
 		$url = 'http://blitz.cs.niu.edu/CreditCard/';
 		$data = array(
-			'vendor' => 'VE001-99',
-			'trans' => '907-987654321-296',
+			'vendor' => 'VE001-100',
+			'trans' => '907-987654321-297',
 			'cc' => $cc,
 			'name' => $name,
 			'exp' => $exp,
@@ -296,7 +275,6 @@ ul{
 
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
-		echo $result;
 
 		// Checks for error in the result
 		if(strpos($result, 'error') !== false)
@@ -331,10 +309,8 @@ ul{
 			echo '<h3>' . $name . ', your order has been succesfully placed.</h3>';
 
 			$count = 0;
-			while(isset($_SESSION['shopping_cart'][$count])) {
-				unset($_SESSION['shopping_cart'][$count]);
-				$count++;
-			}
+
+			session_destroy();
 		}
 	} // order
 
@@ -360,12 +336,12 @@ ul{
 	if(!isset($_POST['view_cart']) and !isset($_POST['search_button']) and !isset($_POST['order']) and !isset($_POST['remove'])) {
 		// provides a search bar to limit
 		echo '<form action"' . $_SERVER['PHP_SELF'] . '" method="POST">';
-		echo '<center><p>Search:&nbsp;<input type="text" name="search">&nbsp;';
-		echo '<input type="submit" name="search_button" value="Search"></p></center></form>';
+		echo '<p>Search:&nbsp;<input type="text" name="search">&nbsp;';
+		echo '<input type="submit" name="search_button" value="Search"></p></form>';
 
 		// Creates table
 		echo '<h1>Products</h1>';
-		echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
+		echo '<table border=2>';
 			echo '<tr>';
 				echo '<th>Product</th>';
 				echo '<th>Description</th>';
@@ -380,7 +356,7 @@ ul{
 		{
 			//----------------------------------------------------------------
 			// May need to be removed
-//			$sql2 = "INSERT INTO Inventory(Num) VALUES(?);";
+//			$sql2 = "INSERT INTO Inventory(Num, quantity) VALUES(?, 50);";
 //			$prepared2 = $pdo2->prepare($sql2);
 //			$prepared2->execute(array($item[0]));   // item number from legacy_DB
 			//----------------------------------------------------------------
@@ -410,7 +386,7 @@ ul{
 		$search = $_POST['search'];
 
 		echo '<h1>Products</h1>';
-                echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
+                echo '<table border=2>';
                         echo '<tr>';
                                 echo '<th>Product</th>';
                                 echo '<th>Description</th>';

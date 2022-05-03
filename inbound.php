@@ -10,14 +10,15 @@
 </head>
 <body>
     <h1>Log Inbound Products</h1>
-    <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/inbound.php" method="POST">
-        <input type="text" name="product_id"> Product ID
-        <input type="text" name="description"> Description
-        <input type="text" name="quantity" required> QTY
-        <input type="submit" name="log_item">
-    </form>
     <?php
         include("secrets.php");
+
+        // verify login 
+        $verified = false;
+        if ($_SESSION["login"][0] == "worker")
+        {
+            $verified = true;
+        }
 
         // Connecting to the legacy databse
         try { 
@@ -38,64 +39,80 @@
             echo "Connection to database failed: " . $e->getMessage();
         }
 
-        //check to see if item exists in legacy database
-        //using product ID
-        $item_exists = false;
-        if (!empty($_POST["product_id"]))
+        // verify login status
+        if ($verified)
         {
-            $product = $_POST["product_id"];
+            // create form
+            echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/inbound.php" method="POST">';
+                echo '<input type="text" name="product_id"> Product ID';
+                echo '<input type="text" name="description"> Description';
+                echo '<input type="text" name="quantity" required> QTY';
+                echo '<input type="submit" name="log_item">';
+            echo '</form>';
+            //check to see if item exists in legacy database
+            //using product ID
+            $item_exists = false;
+            if (!empty($_POST["product_id"]))
+            {
+                $product = $_POST["product_id"];
 
-            $sql = "SELECT number FROM parts WHERE number = ?;";
-            $prepared = $pdo->prepare($sql);
-            $prepared->execute(array($product));
-            $rows = $prepared->fetch();
+                $sql = "SELECT number FROM parts WHERE number = ?;";
+                $prepared = $pdo->prepare($sql);
+                $prepared->execute(array($product));
+                $rows = $prepared->fetch();
 
-            if($rows) { // check if item exists
-                $item_exists = true;
+                if($rows) { // check if item exists
+                    $item_exists = true;
+                }
+            }
+            //using description
+            elseif (!empty($_POST["description"])) 
+            {
+                $description = $_POST["description"];
+                
+                $sql = "SELECT number FROM parts WHERE description = ?;";
+                $prepared = $pdo->prepare($sql);
+                $prepared->execute(array($description));
+                $array = $prepared->fetch();
+                $product = $array[0];
+                
+                if($array) { // check if item exists
+                    $item_exists = true;
+                }
+            }
+            else{
+                if (isset($_POST["product_id"]) || isset($_POST["description"])) { // check if user inputed data before error
+                    echo "Product ID or Description required";
+                }
+            }
+
+            // used to update quanitity row with desk clerk's input
+            // update additional quanity not just quantity
+            if($item_exists)
+            {
+                $quantity = $_POST["quantity"];
+                $sql = "UPDATE Inventory SET quantity = :quantity WHERE num = :product;";
+
+                $prepared = $pdo2->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+                $prepared->execute(array('quantity'=>$quantity, 'product'=>$product));
+                $row = $prepared->fetch();
+
+                echo "\n updated quantity:" . $quantity. "successfully";
+                echo $item_exists;
+            }
+            else  
+            {
+                if (isset($_POST["product_id"]) || isset($_POST["description"])) { // check if user inputed data before error
+                    echo "item ".$product. " does not exist";
+                }
             }
         }
-        //using description
-        elseif (!empty($_POST["description"])) 
-        {
-            $description = $_POST["description"];
-            
-            $sql = "SELECT number FROM parts WHERE description = ?;";
-            $prepared = $pdo->prepare($sql);
-            $prepared->execute(array($description));
-            $array = $prepared->fetch();
-            $product = $array[0];
-            
-            if($array) { // check if item exists
-                $item_exists = true;
-            }
+        elseif ($_SESSION["login"][0] == "default"){
+            echo "security status invalid: contact your System Adminstrator for upgraded privalages";
         }
         else{
-            if (isset($_POST["product_id"]) || isset($_POST["description"])) { // check if user inputed data before error
-                echo "Product ID or Description required";
-            }
+            echo "not logged in visit the login page";
         }
-
-        // used to update quanitity row with desk clerk's input
-        // update additional quanity not just quantity
-        if($item_exists)
-        {
-            $quantity = $_POST["quantity"];
-            $sql = "UPDATE Inventory SET quantity = :quantity WHERE num = :product;";
-
-            $prepared = $pdo2->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-            $prepared->execute(array('quantity'=>$quantity, 'product'=>$product));
-            $row = $prepared->fetch();
-
-            echo "\n updated quantity:" . $quantity. "successfully";
-            echo $item_exists;
-        }
-        else  
-        {
-            if (isset($_POST["product_id"]) || isset($_POST["description"])) { // check if user inputed data before error
-                echo "item ".$product. " does not exist";
-            }
-        }
-
     ?>
 </body>
 </html>

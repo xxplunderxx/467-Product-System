@@ -73,7 +73,7 @@ th{
             $order_id = $_POST["pending_hidden"];
 
             // link back to pending order page
-            echo "<a href=\"./pending.php\"><button>Back</button></a>";
+            echo "<center><a href=\"./pending.php\"><button>Back</button></a></center>";
 
             // print out all the products associated with the inspected order
             $sql = "SELECT * FROM Order_Prod WHERE Order_ID = $order_id;";
@@ -118,8 +118,8 @@ th{
     echo "</table>";
 
         // START OF INVOICE
-        echo "<h2>Invoice</h2>";
-            echo "<table border=2>";
+        echo "<center><h2>Invoice</h2></center>";
+            echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
                 echo "<tr>";    
                     echo "<th>QTY</th>";
                     echo "<th>Description</th>";
@@ -194,7 +194,7 @@ th{
 
             if(!is_bool($sub_rate)) {
                 $sub_shipping = $sub_rate["cost"];
-                echo "sub shipping: ". $sub_shipping;
+                echo "<center>sub shipping: </center>". $sub_shipping;
             }
 
             // sub total calulation
@@ -222,8 +222,8 @@ th{
 
     ?>
 
-    <h2>Shpping Label</h2>
-    <table border=2>
+    <center><h2>Shpping Label</h2></center>
+    <table border=2 style="margin-left:auto;margin-right:auto;">
         <tr>
             <th>Prority 2 day shipping</th>
         </tr>

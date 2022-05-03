@@ -54,6 +54,7 @@
             <li><a href="pending.php">Pending Orders</a></li>
             <li><a href="inbound.php">Log Inbound Products</a></li>
             <li><a href="completed.php">Completed Orders</a></li>
+            <li><a href="administrator.php">Administrator</a></li>
         </ul>
     </body>
 </html>

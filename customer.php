@@ -52,7 +52,7 @@ body{
 <body>
 
         <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-                <input type="submit" name="view_products" value="View Products"> </form>
+            <input type="submit" name="view_products" value="View Products"> </form>
 
         &nbsp;
 
@@ -93,11 +93,11 @@ body{
 	// add to cart and adds it to an associative array that holds all
 	// shopping cart info in session variables
 	//***********************************************************************/
-	if(isset($_POST['addToCart']))
+	if(isset($_POST['addToCart']) and !($_POST['quantity'] == 0) and !is_null($_POST['quantity']))
         {
 		// Sets the shopping cart with new item if not empty
                 if(isset($_SESSION['shopping_cart'][0]))
-                {
+          	{
                         // check item added to cart is already in the session
 			//	if not it just sets the quantity to the amount in the
 			//	written in the text box
@@ -205,7 +205,7 @@ body{
 		$shipping = 0;
 
 		if(!is_bool($bracket)) {
-			$bracket[3];
+			$shipping = $bracket[3];
 		}
 		$total = $amount + $shipping;
 		// Print billing information and allow for checkout

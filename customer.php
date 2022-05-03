@@ -12,8 +12,9 @@ tr, th{
         text-align: center;
         vertical-align: center;
         border: 1px solid black;
-        background: white
-
+        background: white;
+		margin-left:auto;
+		margin-right:auto       
 }
 th{
         background-color: #104b78;
@@ -21,7 +22,7 @@ th{
 }
 .button{
         color: BLACK;
-        background-color: #3175a8;
+        background-color: #3175a8; 
         padding: 15px 32px;
         border: none;
         display: inline-block;
@@ -30,35 +31,66 @@ th{
         font-family: Fantasy;
         text-decoration: none;
 }
-a.button:hover, a.button:active{
+.button:active, .button:hover{
         color: BLACK;
         background-color: #419ade;
+		box-shadow: 0 5px #666;
+        transform: translateY(4px);
 }
 body{
         background-image: linear-gradient(#304352, #d7d2cc);
 
 }
-
+li{
+        float: left;
+}
+li a{
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+}
+li a:hover:not(.active){
+  background-color: #111;
+}
+.active{
+  background-color: #04AA6D;
+}
+ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;  
+		overflow: hidden;
+        background-color: #333;
+}
 </style>
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
-	<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-        <input type="submit" name="view_cart" value="CHECKOUT"> </form>
-	<img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+        <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+		<ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="customer.php">Secure Shopping</a></li>
+            <li><a href="worker.php">Associates</a></li>
+            <li style="float:right"><a class="active" href="about.html">About</a></li>
+        </ul>
 </head>
 <body>
-
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-            <input type="submit" name="view_products" value="View Products"> </form>
+        &nbsp;
+		<center>		
+        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
+                <input type="submit" name="view_products" value="View Products" class="button"> </form>
 
         &nbsp;
 
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-                <input type="submit" name="view_cart" value="View Cart"> </form>
+        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
 
+                <input type="submit" name="view_cart" value="View Cart" class="button"> </form>
+
+		</center>
 <?php
     include 'secrets.php';
 
@@ -93,11 +125,11 @@ body{
 	// add to cart and adds it to an associative array that holds all
 	// shopping cart info in session variables
 	//***********************************************************************/
-	if(isset($_POST['addToCart']) and !($_POST['quantity'] == 0) and !is_null($_POST['quantity']))
+	if(isset($_POST['addToCart']))
         {
 		// Sets the shopping cart with new item if not empty
                 if(isset($_SESSION['shopping_cart'][0]))
-          	{
+                {
                         // check item added to cart is already in the session
 			//	if not it just sets the quantity to the amount in the
 			//	written in the text box
@@ -148,12 +180,12 @@ body{
 
 		// Displays items in the cart
 		$num_items = count($_SESSION["shopping_cart"]);
-		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
+		echo "<center><h3>You have " . $num_items . " part(s) in your cart</h3></center>";
 		echo '&nbsp;';
-		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
-                echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
+		echo '<form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>';
+                echo '<center><input type="submit" name="clear_cart" class="button" value="Clear Cart"> </form></center>';
 		echo '<h1>Shopping Cart</h1>';
-                echo '<table border=2>';
+                echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
                         echo '<tr>';
                                 echo '<th>Product</th>';
                                 echo '<th>Description</th>';
@@ -197,28 +229,18 @@ body{
 		}
 		echo "</table>";
 
-                $sql = 'SELECT * FROM Weights WHERE low <= ? AND high > ?;';
-                $prepared = $pdo2->prepare($sql);
-                $prepared->execute(array($weight,$weight));
-                $bracket = $prepared->fetch();
-
 		$shipping = 0;
-
-		if(!is_bool($bracket)) {
-			$shipping = $bracket[3];
-		}
 		$total = $amount + $shipping;
 		// Print billing information and allow for checkout
-		echo "<h4>Billing Information</h4>";
-		echo "<p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
+		echo "<h4><center>Billing Information</center></h4>";
+		echo "<center><p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
 		echo "&emsp;&emsp;Weight: " . $weight . "lbs.<br/>";
-                echo "&emsp;&nbsp;Shipping: $" . $shipping . "<br/>";
-		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p>";
+		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p></center>";
 
 		$count = 0;
 
 		// Prints form for customer info to order table
-		echo "<form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
+		echo "<center><form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
 			echo "<input type=\"hidden\" name=\"total_price\" value=\"" . $total . "\">";
 			echo "<input type=\"hidden\" name=\"total_weight\" value=\"" . $weight . "\">";
 			echo "&emsp;&emsp;&ensp;Name:&nbsp<input type=\"text\" name=\"name\"><br/>";
@@ -226,7 +248,7 @@ body{
 			echo "&emsp;&ensp;&nbsp;Address:&nbsp<input type=\"text\" name=\"address\"><br/>";
 			echo "&emsp;&emsp;&emsp;&ensp;&nbspCC:&nbsp<input type=\"text\" name=\"cc\"><br/>";
 			echo "&emsp;&emsp;&emsp;&nbsp;Exp.:&nbsp<input type=\"text\" name=\"exp\"><br/><br/>";
-			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\">";
+			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\"></center>";
 		echo "</form>";
 
 	} // view  cart
@@ -258,8 +280,8 @@ body{
 		// connects to the credit card processing system
 		$url = 'http://blitz.cs.niu.edu/CreditCard/';
 		$data = array(
-			'vendor' => 'VE001-100',
-			'trans' => '907-987654321-297',
+			'vendor' => 'VE001-99',
+			'trans' => '907-987654321-296',
 			'cc' => $cc,
 			'name' => $name,
 			'exp' => $exp,
@@ -275,6 +297,7 @@ body{
 
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
+		echo $result;
 
 		// Checks for error in the result
 		if(strpos($result, 'error') !== false)
@@ -309,8 +332,10 @@ body{
 			echo '<h3>' . $name . ', your order has been succesfully placed.</h3>';
 
 			$count = 0;
-
-			session_destroy();
+			while(isset($_SESSION['shopping_cart'][$count])) {
+				unset($_SESSION['shopping_cart'][$count]);
+				$count++;
+			}
 		}
 	} // order
 
@@ -336,12 +361,12 @@ body{
 	if(!isset($_POST['view_cart']) and !isset($_POST['search_button']) and !isset($_POST['order']) and !isset($_POST['remove'])) {
 		// provides a search bar to limit
 		echo '<form action"' . $_SERVER['PHP_SELF'] . '" method="POST">';
-		echo '<p>Search:&nbsp;<input type="text" name="search">&nbsp;';
-		echo '<input type="submit" name="search_button" value="Search"></p></form>';
+		echo '<center><p>Search:&nbsp;<input type="text" name="search">&nbsp;';
+		echo '<input type="submit" name="search_button" value="Search"></p></center></form>';
 
 		// Creates table
 		echo '<h1>Products</h1>';
-		echo '<table border=2>';
+		echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
 			echo '<tr>';
 				echo '<th>Product</th>';
 				echo '<th>Description</th>';
@@ -354,12 +379,12 @@ body{
 		// Queries inventory quantity and displays all product info
 		foreach($pdo->query($sql) as $item)
 		{
-			
+			//----------------------------------------------------------------
 			// May need to be removed
-			$sql2 = "INSERT INTO Inventory(Num, quantity) VALUES(?, 50);";
-			$prepared2 = $pdo2->prepare($sql2);
-			$prepared2->execute(array($item[0]));   // item number from legacy_DB
-
+//			$sql2 = "INSERT INTO Inventory(Num) VALUES(?);";
+//			$prepared2 = $pdo2->prepare($sql2);
+//			$prepared2->execute(array($item[0]));   // item number from legacy_DB
+			//----------------------------------------------------------------
 
 			$sql2 = "SELECT * FROM Inventory WHERE Num = ?;";
 			$prepared2 = $pdo2->prepare($sql2);
@@ -386,7 +411,7 @@ body{
 		$search = $_POST['search'];
 
 		echo '<h1>Products</h1>';
-                echo '<table border=2>';
+                echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
                         echo '<tr>';
                                 echo '<th>Product</th>';
                                 echo '<th>Description</th>';

@@ -1,3 +1,17 @@
+<style>
+tr, th{
+        text-align: center;
+        vertical-align: center;
+        border: 1px solid black;
+        background: white;
+        margin-left:auto;
+        margin-right:auto       
+}
+th{
+        background-color: #104b78;
+        color: white
+}
+</style>
 <?php 
     session_start(); //start session
 
@@ -41,7 +55,7 @@
 </head>
 <body>
     <h1>Order Inspection</h1>
-    <table border=2>
+    <table border=2 style="margin-left:auto;margin-right:auto;">
         <tr>
             <th>Order Num</th>
             <th>Product Num</th>

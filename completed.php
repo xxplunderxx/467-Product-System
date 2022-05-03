@@ -20,8 +20,14 @@ th{
 </style>
 <?php 
     session_start(); //start session
-
     include('secrets.php');
+
+    // verify login 
+    $verified = false;
+    if ($_SESSION["login"][0] == "worker")
+    {
+        $verified = true;
+    }
     
     // Connecting to th legacy databse
     try { // if something goes wrong, an exception is thrown
@@ -68,6 +74,12 @@ th{
             <th>Weight</th>
         </tr>
 <?php
+    // check verification
+    if (!$verified)
+    {
+        header("Location: http://students.cs.niu.edu/~z1892587/467-Product-System/login.php");
+    }
+    
     // show all pending orders (on the Order_info table)
     $sql = "SELECT * FROM Order_Info WHERE status = 'completed';";
     foreach($pdo2->query($sql) as $item)

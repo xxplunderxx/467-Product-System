@@ -16,8 +16,16 @@
         <input type="text" name="quantity" required>
         <input type="submit" name="log_item">
     </form></center>
+  
     <?php
         include("secrets.php");
+
+        // verify login 
+        $verified = false;
+        if ($_SESSION["login"][0] == "worker")
+        {
+            $verified = true;
+        }
 
         // Connecting to the legacy databse
         try { 
@@ -37,6 +45,20 @@
         catch(PDOexception $e) { // handle exception
             echo "Connection to database failed: " . $e->getMessage();
         }
+
+        // check verification
+        if (!$verified)
+        {
+            header("Location: http://students.cs.niu.edu/~z1892587/467-Product-System/login.php");
+        }
+
+        // create form
+        echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/inbound.php" method="POST">';
+            echo '<input type="text" name="product_id"> Product ID';
+            echo '<input type="text" name="description"> Description';
+            echo '<input type="text" name="quantity" required> QTY';
+            echo '<input type="submit" name="log_item">';
+        echo '</form>';
 
         //check to see if item exists in legacy database
         //using product ID
@@ -95,7 +117,7 @@
                 echo "item ".$product. " does not exist";
             }
         }
-
+        
     ?>
 </body>
 </html>

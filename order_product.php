@@ -3,6 +3,13 @@
 
     include('secrets.php');
     
+    // verify login 
+    $verified = false;
+    if ($_SESSION["login"][0] == "worker")
+    {
+        $verified = true;
+    }
+
     // Connecting to th legacy databse
     try { // if something goes wrong, an exception is thrown
         $dsn = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
@@ -42,6 +49,11 @@
             <th>Price</th>
         </tr>
     <?php
+        if(!$verified)
+        {
+            header("Location: http://students.cs.niu.edu/~z1892587/467-Product-System/login.php");
+        }
+        
         if(isset($_POST["inspect_pending"]) && isset($_POST["pending_hidden"]))    //pending order inspection
         {
             $order_id = $_POST["pending_hidden"];

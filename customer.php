@@ -130,33 +130,33 @@ ul{
 		// Sets the shopping cart with new item if not empty
                 if(isset($_SESSION['shopping_cart'][0]))
                 {
-                        // check item added to cart is already in the session
-			//	if not it just sets the quantity to the amount in the
-			//	written in the text box
-                        $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-                        if(!in_array($_POST["prod_hidden"], $item_array_id))
-                        {
-				// finds the count of the next open position in shopping cart array
-				// and add new item
-                                $count = count($_SESSION["shopping_cart"]);
-                                $item_array = array(
-                                        'item_id' => $_POST["prod_hidden"],
-                                        'item_quantity' => $_POST["quantity"]
-                                );
-                                $_SESSION["shopping_cart"][$count] = $item_array;   // store after previous items
-                        }
-			// If item already is already stored add to the current quantity
-                        else{   // we know item is already stored in the session
-				$count = array_search($_POST["prod_hidden"], $item_array_id);
-				$item_quantity = $_SESSION["shopping_cart"][$count]["item_quantity"] + $_POST["quantity"];
-				$item_array = array (
-					'item_id' => $_POST["prod_hidden"],
-					'item_quantity' => $item_quantity
-				);
-				$_SESSION["shopping_cart"][$count] = $item_array;
-                        }
+                	// check item added to cart is already in the session
+					//	if not it just sets the quantity to the amount in the
+					//	written in the text box
+					$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+					if(!in_array($_POST["prod_hidden"], $item_array_id))
+					{
+						// finds the count of the next open position in shopping cart array
+						// and add new item
+						$count = count($_SESSION["shopping_cart"]);
+						$item_array = array(
+								'item_id' => $_POST["prod_hidden"],
+								'item_quantity' => $_POST["quantity"]
+						);
+						$_SESSION["shopping_cart"][$count] = $item_array;   // store after previous items
+                    }
+					// If item already is already stored add to the current quantity
+                    else{   // we know item is already stored in the session
+						$count = array_search($_POST["prod_hidden"], $item_array_id);
+						$item_quantity = $_SESSION["shopping_cart"][$count]["item_quantity"] + $_POST["quantity"];
+						$item_array = array (
+							'item_id' => $_POST["prod_hidden"],
+							'item_quantity' => $item_quantity
+						);
+						$_SESSION["shopping_cart"][$count] = $item_array;
+                    }
                 }
-		// If shopping cart is empty add item to first position in array
+				// If shopping cart is empty add item to first position in array
                 else
                 {
                         $item_array = array(
@@ -165,7 +165,6 @@ ul{
                         );
                         $_SESSION["shopping_cart"][0] = $item_array;
                 }
-
         } // add to cart
 
         //-**********************************************************************

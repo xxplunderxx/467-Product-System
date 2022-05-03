@@ -1,3 +1,7 @@
+#upgrade user status
+#fill in ? with username 
+# UPDATE User SET status = 'worker' WHERE User_name = '?';
+
 #Order info inserition
 INSERT INTO Order_Info(cust_name,cust_addr,cust_email,total_price,status,total_weight) VALUES("Jacob","123 cool street Dekalb, Illnois. 61069","real_email@gmail.com",100.00,"Pending",10.00);
 

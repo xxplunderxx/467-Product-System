@@ -41,6 +41,29 @@ body{
         background-image: linear-gradient(#304352, #d7d2cc);
 
 }
+li{
+        float: left;
+}
+li a{
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+}
+li a:hover:not(.active){
+  background-color: #111;
+}
+.active{
+  background-color: #04AA6D;
+}
+ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;  
+		overflow: hidden;
+        background-color: #333;
+}
 </style>
 <head>
         <meta charset="UTF-8">
@@ -48,15 +71,22 @@ body{
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
         <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+		<ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="customer.php">Secure Shopping</a></li>
+            <li><a href="worker.php">Associates</a></li>
+            <li style="float:right"><a class="active" href="about.html">About</a></li>
+        </ul>
 </head>
 <body>
-        <center>
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        &nbsp;
+		<center>		
+        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
                 <input type="submit" name="view_products" value="View Products" class="button"> </form>
 
         &nbsp;
 
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>
 
                 <input type="submit" name="view_cart" value="View Cart" class="button"> </form>
 
@@ -149,10 +179,10 @@ body{
 
 		// Displays items in the cart
 		$num_items = count($_SESSION["shopping_cart"]);
-		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
+		echo "<center><h3>You have " . $num_items . " part(s) in your cart</h3></center>";
 		echo '&nbsp;';
-		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
-                echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
+		echo '<form action="http://students.cs.niu.edu/~z1897952/467-Product-System/customer.php" method=POST>';
+                echo '<center><input type="submit" name="clear_cart" class="button" value="Clear Cart"> </form></center>';
 		echo '<h1>Shopping Cart</h1>';
                 echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
                         echo '<tr>';
@@ -201,15 +231,15 @@ body{
 		$shipping = 0;
 		$total = $amount + $shipping;
 		// Print billing information and allow for checkout
-		echo "<h4>Billing Information</h4>";
-		echo "<p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
+		echo "<h4><center>Billing Information</center></h4>";
+		echo "<center><p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
 		echo "&emsp;&emsp;Weight: " . $weight . "lbs.<br/>";
-		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p>";
+		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p></center>";
 
 		$count = 0;
 
 		// Prints form for customer info to order table
-		echo "<form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
+		echo "<center><form action\"" . $_SERVER['PHP_SELF'] . "\" method=\"POST\">";
 			echo "<input type=\"hidden\" name=\"total_price\" value=\"" . $total . "\">";
 			echo "<input type=\"hidden\" name=\"total_weight\" value=\"" . $weight . "\">";
 			echo "&emsp;&emsp;&ensp;Name:&nbsp<input type=\"text\" name=\"name\"><br/>";
@@ -217,7 +247,7 @@ body{
 			echo "&emsp;&ensp;&nbsp;Address:&nbsp<input type=\"text\" name=\"address\"><br/>";
 			echo "&emsp;&emsp;&emsp;&ensp;&nbspCC:&nbsp<input type=\"text\" name=\"cc\"><br/>";
 			echo "&emsp;&emsp;&emsp;&nbsp;Exp.:&nbsp<input type=\"text\" name=\"exp\"><br/><br/>";
-			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\">";
+			echo "&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp<input type=\"submit\" name=\"order\" value=\"Check Out\"></center>";
 		echo "</form>";
 
 	} // view  cart

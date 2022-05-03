@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warehouse Page</title>
 </head>
-<body>
+<body><center>
     <h1>Order View</h1>
         <a href="./pending.php"><button>Pending Orders</button></a>
         <a href="./completed.php"><button>Completed Orders</button></a>
-</body>
+</center></body>
 </html>
+

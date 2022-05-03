@@ -1,3 +1,23 @@
+<style>
+h1{
+        color: black;
+        font-family: verdana;
+        font-size: 300%;
+        text-align: center
+}
+tr, th{
+        text-align: center;
+        vertical-align: center;
+        border: 1px solid black;
+        background: white;
+		margin-left:auto;
+		margin-right:auto       
+}
+th{
+        background-color: #104b78;
+        color: white
+}
+</style>
 <?php 
     session_start(); //start session
 
@@ -46,8 +66,8 @@
     <title>Pending Order View</title>
 </head>
 <body>
-    <h2>Pending Orders</h2>
-    <table border=2>
+    <h2><center>Pending Orders</center></h2>
+    <table border=2; style="margin-left:auto;margin-right:auto;">
         <tr>
             <th>Order Num</th>
             <th>Name</th>

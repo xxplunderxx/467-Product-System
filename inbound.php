@@ -10,6 +10,13 @@
 </head>
 <body>
     <h1>Log Inbound Products</h1>
+    <center><form action="http://students.cs.niu.edu/~z1892587/467-Product-System/inbound.php" method="POST">
+        <input type="text" name="product_id">
+        <input type="text" name="description">
+        <input type="text" name="quantity" required>
+        <input type="submit" name="log_item">
+    </form></center>
+  
     <?php
         include("secrets.php");
 

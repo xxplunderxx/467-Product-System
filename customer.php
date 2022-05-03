@@ -1,10 +1,53 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+h1{
+        color: black;
+        font-family: verdana;
+        font-size: 300%;
+        text-align: center
+}
+tr, th{
+        text-align: center;
+        vertical-align: center;
+        border: 1px solid black;
+        background: white
+
+}
+th{
+        background-color: #104b78;
+        color: white
+}
+.button{
+        color: BLACK;
+        background-color: #3175a8;
+        padding: 15px 32px;
+        border: none;
+        display: inline-block;
+        margin: 4px 2px;
+        border-radius: 12px;
+        font-family: Fantasy;
+        text-decoration: none;
+}
+a.button:hover, a.button:active{
+        color: BLACK;
+        background-color: #419ade;
+}
+body{
+        background-image: linear-gradient(#304352, #d7d2cc);
+
+}
+
+</style>
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Car Parts Store</title>
+        <title>Product System</title>
+	<form action="http://students.cs.niu.edu/~z1886085/customer.php" method=POST>
+        <input type="submit" name="view_cart" value="CHECKOUT"> </form>
+	<img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
 </head>
 <body>
 
@@ -17,10 +60,7 @@
                 <input type="submit" name="view_cart" value="View Cart"> </form>
 
 <?php
-        include 'secrets.php';
-
-	// Start the session to keep track of session variables (i.e)
-	session_start();
+    include 'secrets.php';
 
 	// Set the shopping cart to empty array if null
 	if(!(isset($_SESSION['shopping_cart']))) {
@@ -157,12 +197,22 @@
 		}
 		echo "</table>";
 
+                $sql = 'SELECT * FROM Weights WHERE low < ? AND high > ?;';
+                $prepared = $pdo2->prepare($sql);
+                $prepared->execute(array($weight,$weight));
+                $bracket = $prepared->fetch();
+
 		$shipping = 0;
+
+		if(!is_bool($bracket)) {
+			$bracket[3];
+		}
 		$total = $amount + $shipping;
 		// Print billing information and allow for checkout
 		echo "<h4>Billing Information</h4>";
 		echo "<p>&emsp;&ensp;Amount: $" . $amount . "<br/>";
 		echo "&emsp;&emsp;Weight: " . $weight . "lbs.<br/>";
+                echo "&emsp;&nbsp;Shipping: $" . $shipping . "<br/>";
 		echo "&emsp;&emsp;&ensp;&nbspTotal: $" . $total . "</p>";
 
 		$count = 0;
@@ -208,8 +258,8 @@
 		// connects to the credit card processing system
 		$url = 'http://blitz.cs.niu.edu/CreditCard/';
 		$data = array(
-			'vendor' => 'VE001-99',
-			'trans' => '907-987654321-296',
+			'vendor' => 'VE001-100',
+			'trans' => '907-987654321-297',
 			'cc' => $cc,
 			'name' => $name,
 			'exp' => $exp,
@@ -225,7 +275,6 @@
 
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
-		echo $result;
 
 		// Checks for error in the result
 		if(strpos($result, 'error') !== false)
@@ -260,10 +309,8 @@
 			echo '<h3>' . $name . ', your order has been succesfully placed.</h3>';
 
 			$count = 0;
-			while(isset($_SESSION['shopping_cart'][$count])) {
-				unset($_SESSION['shopping_cart'][$count]);
-				$count++;
-			}
+
+			session_destroy();
 		}
 	} // order
 
@@ -309,7 +356,7 @@
 		{
 			//----------------------------------------------------------------
 			// May need to be removed
-//			$sql2 = "INSERT INTO Inventory(Num) VALUES(?);";
+//			$sql2 = "INSERT INTO Inventory(Num, quantity) VALUES(?, 50);";
 //			$prepared2 = $pdo2->prepare($sql2);
 //			$prepared2->execute(array($item[0]));   // item number from legacy_DB
 			//----------------------------------------------------------------

@@ -1,11 +1,20 @@
+about.html<!DOCTYPE html>
 <html>
     <head>
-        <title>Home Page</title>
+        <title>About Page</title>
     <style>
-        h1{ text-align: center; }
         h2{ text-align: center; }
-        h3{ text-align: center; }
         p { text-align: center; }
+    tr, th{
+        text-align: center;
+        vertical-align: center;
+        border: 1px solid black;
+        background: white
+        }
+    th{
+        background-color: #104b78;
+        color: white
+        }
         ul {
             list-style-type: none;
             margin: 0;
@@ -29,22 +38,47 @@
 .active {
   background-color: #04AA6D;
 }
+body{
+        background-image: linear-gradient(#304352, #d7d2cc);
+    }
+    .container {
+        position: relative;
+        text-align: center;
+        color: black;
+        font-family: verdana;
+        font-size: 300%;
+    }
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
     </style>
+    <div class="container">
+        <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+        <div class="centered"> Da Store</div>
+    </div>
     </head>
     <body>
-        <h1>
-            Comp Name
-        </h1>
-
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="customer.php">Secure Shopping</a></li>
             <li><a href="worker.php">Associates</a></li>
             <li style="float:right"><a class="active" href="about.html">About</a></li>
         </ul>
-        <h2>Our Parts</h2>
-        <p> Fluff stuff</p>
-        <h3>Founders</h3>
+        <h2>Our Promise</h2>
+        <img src="https://cdn.freebiesupply.com/logos/large/2x/niu-huskies-2-logo-png-transparent.png" style="width:25%" class="center" alt="NIU Almumni Window Decal"></img>
+        <h2></h2>
+        <p>At Da Store, founded in 2022, began on a dream, the dream to supply the best part to our customers!
+        </p>
+        <h2>Founders</h2>
         <h3>Aksh Patel, Alexandra Alcantar, Jacob Eul, Julia Finegan</h3>
     </body>
 </html>

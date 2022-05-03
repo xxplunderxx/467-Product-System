@@ -51,10 +51,8 @@
     <body>
         <ul>
             <li><a href="home.html">Home</a></li>
-            <li><a href="order_product.php">Order Inspection</a></li>
             <li><a href="pending.php">Pending Orders</a></li>
             <li><a href="inbound.php">Log Inbound Products</a></li>
-            <li><a href="outbound.php">View Outbound Products</a></li>
             <li><a href="completed.php">Completed Orders</a></li>
         </ul>
     </body>

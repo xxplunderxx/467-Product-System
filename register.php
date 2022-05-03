@@ -57,13 +57,21 @@
         {
             echo "account already exists";
         }
-        else    // acount does not exist
+        else    // account does not exist
         {
-            $sql = "INSERT INTO User(User_name,password,status) Values(?,?,'default')";
-            $prepared = $pdo2->prepare($sql);
-            $prepared->execute(array($username,$password));   // user name and password
+            // generate password hash
+            $hash = password_hash($password,PASSWORD_DEFAULT);
 
-            echo "successfully created user: " . $username;
+            $sql = "INSERT INTO User(User_name,password) VALUES(?,?)";
+            $prepared = $pdo2->prepare($sql);
+            $bool = $prepared->execute(array($username,$hash));   // user name and hash
+
+            if ($bool) {
+                echo "successfully created user: " . $username;
+            }
+            else {
+                echo "error";
+            }
         }
     }
 ?>

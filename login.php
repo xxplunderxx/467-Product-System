@@ -45,7 +45,7 @@
     if(isset($_POST["login"]))
     {
         $username = $_POST["user_name"];
-        $password = $_POST["user_password"];
+        $password = $_POST["user_password"];    // user input password
         
         $sql = "SELECT User_name,password,status FROM User WHERE User_name=?";
         $prepared = $pdo2->prepare($sql);
@@ -54,11 +54,13 @@
 
         // get values from the database
         $db_username = $row["User_name"];
-        $db_password = $row["password"];
+        $hash = $row["password"];   // password from DB
         $status = $row["status"];
 
+        // check encrypted values
+        $pass_match = password_verify($password, $hash);
         // check if logged in successfully
-        if($username == $db_username && $password ==$db_password)
+        if($username == $db_username && $pass_match)
         {
             echo " user ". $username. " logged in successfully ";
             $_SESSION["login"][0] = $status;

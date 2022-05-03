@@ -197,7 +197,7 @@ body{
 		}
 		echo "</table>";
 
-                $sql = 'SELECT * FROM Weights WHERE low < ? AND high > ?;';
+                $sql = 'SELECT * FROM Weights WHERE low <= ? AND high > ?;';
                 $prepared = $pdo2->prepare($sql);
                 $prepared->execute(array($weight,$weight));
                 $bracket = $prepared->fetch();

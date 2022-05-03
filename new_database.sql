@@ -5,6 +5,8 @@
 DROP TABLE IF EXISTS Order_Prod;
 DROP TABLE IF EXISTS Order_Info;
 DROP TABLE IF EXISTS Inventory;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Weights;
 
 CREATE TABLE Inventory(
 	Num	INT	NOT NULL	 AUTO_INCREMENT,
@@ -40,6 +42,11 @@ CREATE TABLE User(
 	status    CHAR(16) DEFAULT "default",
 	PRIMARY KEY (User_name)
 );
-#upgrade user status
-#fill in ? with username 
-# UPDATE User SET status = 'worker' WHERE User_name = '?';
+
+CREATE TABLE Weights(
+	id	INT	NOT NULL	AUTO_INCREMENT,
+	low	INT,
+	high	INT,
+	cost	DECIMAL(8,2),
+	PRIMARY KEY (ID)
+);

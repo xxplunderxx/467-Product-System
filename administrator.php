@@ -8,12 +8,12 @@
 </head>
 <body>
 
-        <form action="http://students.cs.niu.edu/~z1886085/administrator.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/administrator.php" method=POST>
                 <input type="submit" name="view_orders" value="View Orders"> </form>
 
         &nbsp;
 
-        <form action="http://students.cs.niu.edu/~z1886085/administrator.php" method=POST>
+        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/administrator.php" method=POST>
                 <input type="submit" name="view_weights" value="View Weight Brackets"> </form>
 
 

@@ -93,11 +93,11 @@ body{
 	// add to cart and adds it to an associative array that holds all
 	// shopping cart info in session variables
 	//***********************************************************************/
-	if(isset($_POST['addToCart']))
+	if(isset($_POST['addToCart']) and !($_POST['quantity'] == 0) and !is_null($_POST['quantity']))
         {
 		// Sets the shopping cart with new item if not empty
                 if(isset($_SESSION['shopping_cart'][0]))
-                {
+          	{
                         // check item added to cart is already in the session
 			//	if not it just sets the quantity to the amount in the
 			//	written in the text box

@@ -12,52 +12,99 @@ tr, th{
         text-align: center;
         vertical-align: center;
         border: 1px solid black;
-        background: white
-
+        background: white;
+		margin-left:auto;
+		margin-right:auto;     
 }
 th{
         background-color: #104b78;
         color: white
 }
-.button{
-        color: BLACK;
-        background-color: #3175a8;
-        padding: 15px 32px;
-        border: none;
-        display: inline-block;
-        margin: 4px 2px;
-        border-radius: 12px;
-        font-family: Fantasy;
-        text-decoration: none;
-}
-a.button:hover, a.button:active{
-        color: BLACK;
-        background-color: #419ade;
-}
 body{
         background-image: linear-gradient(#304352, #d7d2cc);
 
 }
-
+.button{
+        color: BLACK;
+        background-color: #3175a8; 
+        padding: 16px 32px;
+        border: none;
+        display: inline-block;
+        margin: 4px 2px;
+        font-family: Fantasy;
+        text-decoration: none;
+		cursor: pointer;
+}
+.button:active, .button:hover{
+        color: BLACK;
+        background-color: #419ade;
+		box-shadow: 0 5px #666;
+        transform: translateY(4px);
+		cursor: pointer;
+}
+li{
+        float: left;
+}
+li a{
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+}
+li a:hover:not(.active){
+  background-color: #111;
+}
+.active{
+  background-color: #04AA6D;
+}
+ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;  
+		overflow: hidden;
+        background-color: #333;
+}
+form { display: inline; }
+.button2{
+        color: WHITE;
+        background-color: BLACK; 
+        padding: 16px 32px;
+        border: none;
+        display: inline-block;
+        margin: 4px 2px;
+        text-decoration: none;
+		font-size: 12px;
+}
+.button2:active, .button2:hover{
+        color: BLACK;
+        background-color: WHITE;
+		cursor: pointer;
+}
 </style>
 <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product System</title>
-	<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-        <input type="submit" name="view_cart" value="CHECKOUT"> </form>
-	<img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+	    <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
+        <input type="submit" name="view_cart" value="CHECKOUT 🛒" class="button2"> </form>
+	    <img src="https://imgur.com/Ugs7BAU.png" style="width:100%"></img>
+		<ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="customer.php">Secure Shopping</a></li>
+            <li><a href="worker.php">Associates</a></li>
+            <li style="float:right"><a class="active" href="about.html">About</a></li>
+        </ul>
 </head>
 <body>
-
+    <center>
+		<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php " method=POST>
+            <input type="submit" name="view_products" class="button" value="View Products"> </form>
+&nbsp;
         <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-            <input type="submit" name="view_products" value="View Products"> </form>
-
-        &nbsp;
-
-        <form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>
-                <input type="submit" name="view_cart" value="View Cart"> </form>
+            <input type="submit" name="view_cart" class="button" value="View Cart"> </form>
+	</center>
 
 <?php
     include 'secrets.php';
@@ -148,12 +195,12 @@ body{
 
 		// Displays items in the cart
 		$num_items = count($_SESSION["shopping_cart"]);
-		echo "<h3>You have " . $num_items . " part(s) in your cart</h3>";
+		echo "<center><h3>You have " . $num_items . " part(s) in your cart</h3></center>";
 		echo '&nbsp;';
 		echo '<form action="http://students.cs.niu.edu/~z1892587/467-Product-System/customer.php" method=POST>';
-                echo '<input type="submit" name="clear_cart" value="Clear Cart"> </form>';
+                echo '<center><input type="submit" name="clear_cart" value="Clear Cart" style="margin-left:auto;margin-right:auto;"><center> </form>';
 		echo '<h1>Shopping Cart</h1>';
-                echo '<table border=2>';
+                echo '<center><table border=2></center>';
                         echo '<tr>';
                                 echo '<th>Product</th>';
                                 echo '<th>Description</th>';
@@ -239,7 +286,7 @@ body{
         	        $count++;
 		}
 
-		echo '<h4>CART CLEARED</h4>';
+		echo '<center><h4>CART CLEARED</h4></center>';
 	}
 
 	// This adds an order to the order tables in the database, sends the cc info to the cc
@@ -336,12 +383,12 @@ body{
 	if(!isset($_POST['view_cart']) and !isset($_POST['search_button']) and !isset($_POST['order']) and !isset($_POST['remove'])) {
 		// provides a search bar to limit
 		echo '<form action"' . $_SERVER['PHP_SELF'] . '" method="POST">';
-		echo '<p>Search:&nbsp;<input type="text" name="search">&nbsp;';
+		echo '<center><p>Search:&nbsp;<input type="text" name="search"><center>&nbsp;';
 		echo '<input type="submit" name="search_button" value="Search"></p></form>';
 
 		// Creates table
 		echo '<h1>Products</h1>';
-		echo '<table border=2>';
+		echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
 			echo '<tr>';
 				echo '<th>Product</th>';
 				echo '<th>Description</th>';
@@ -385,7 +432,7 @@ body{
 		$search = $_POST['search'];
 
 		echo '<h1>Products</h1>';
-			echo '<table border=2>';
+			echo '<table border=2 style="margin-left:auto;margin-right:auto;">';
 				echo '<tr>';
 					echo '<th>Product</th>';
 					echo '<th>Description</th>';

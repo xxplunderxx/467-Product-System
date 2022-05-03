@@ -43,3 +43,19 @@ CREATE TABLE User(
 #upgrade user status
 #fill in ? with username 
 # UPDATE User SET status = 'worker' WHERE User_name = '?';
+
+CREATE TABLE Weights(
+	id	INT	NOT NULL	AUTO_INCREMENT,
+	low	INT,
+	high	INT,
+	cost	DECIMAL(8,2),
+	PRIMARY KEY (ID)
+);
+
+INSERT INTO Weights VALUES('1','0','2','.99');
+INSERT INTO Weights(low, high, cost) VALUES('2','5','1.99');
+INSERT INTO Weights(low, high, cost) VALUES('5','10','5.99');
+INSERT INTO Weights(low, high, cost) VALUES('10','20','9.99');
+INSERT INTO Weights(low, high, cost) VALUES('20','50','19.99');
+INSERT INTO Weights(low, high, cost) VALUES('50','100','25.99');
+INSERT INTO Weights(low, cost) VALUES('100','49.99');

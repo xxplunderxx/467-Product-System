@@ -354,12 +354,12 @@ body{
 		// Queries inventory quantity and displays all product info
 		foreach($pdo->query($sql) as $item)
 		{
-			//----------------------------------------------------------------
+			
 			// May need to be removed
-//			$sql2 = "INSERT INTO Inventory(Num, quantity) VALUES(?, 50);";
-//			$prepared2 = $pdo2->prepare($sql2);
-//			$prepared2->execute(array($item[0]));   // item number from legacy_DB
-			//----------------------------------------------------------------
+			$sql2 = "INSERT INTO Inventory(Num, quantity) VALUES(?, 50);";
+			$prepared2 = $pdo2->prepare($sql2);
+			$prepared2->execute(array($item[0]));   // item number from legacy_DB
+
 
 			$sql2 = "SELECT * FROM Inventory WHERE Num = ?;";
 			$prepared2 = $pdo2->prepare($sql2);

@@ -155,11 +155,15 @@
                 echo "email was sent to adress: ". $order["cust_email"];
             }
         }
+
     // make shipping labels and send email
         // qet information from tables for labels
         $sql = "SELECT * FROM Order_Info WHERE Order_ID = $order_id;";
         $result = $pdo2->query($sql);
         $order = $result->fetch(PDO::FETCH_ASSOC);
+
+        $sub_total= 0;
+        $sub_shipping = 0;
 
         $sql1 = "SELECT * FROM Order_Prod WHERE Order_ID = $order_id;";
         foreach($pdo2->query($sql1) as $prod) {
@@ -168,18 +172,36 @@
             $prepared->execute(array($prod["prod_ID"]));
             $parts = $prepared->fetch(PDO::FETCH_ASSOC);
 
+            $part_weight = $parts["weight"];
+            $sql = "SELECT * FROM Weights WHERE low <= ? AND high > ?";
+            $prepared = $pdo2->prepare($sql);
+            $prepared->execute(array($part_weight,$part_weight));
+            $sub_rate = $prepared->fetch(PDO::FETCH_ASSOC);
+
+            if(!is_bool($sub_rate)) {
+                $sub_shipping = $sub_rate["cost"];
+                echo "sub shipping: ". $sub_shipping;
+            }
+
+            // sub total calulation
+            $sub_total += ($sub_shipping + $prod['price']);
+
             //make Invoice continued
             echo "<tr>";
                 echo "<td>".$prod["amount"]."</td>";
                 echo "<td>".$parts["description"]."</td>";
                 echo "<td>".$prod["price"]."</td>";
-                echo "<td>$0.00</td>";
+                echo "<td>".$sub_shipping."</td>";
             echo "</tr>"; 
             echo "<tr>";
-                echo "<td>TOTAL</td>";
-                echo "<td>".$order["total_price"]."</td>";
+                echo "<td>sub total</td>";
+                echo "<td>".$sub_total."</td>";
             echo "</tr>";
         }
+            echo "<tr>";
+                echo "<td>TOTAL</td>";
+                echo "<td>".$sub_total."</td>";
+            echo "</tr>";
 
         // end invoice table
         echo "</table>";

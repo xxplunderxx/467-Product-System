@@ -194,7 +194,6 @@ th{
 
             if(!is_bool($sub_rate)) {
                 $sub_shipping = $sub_rate["cost"];
-                echo "<center>sub shipping: </center>". $sub_shipping;
             }
 
             // sub total calulation

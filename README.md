@@ -5,19 +5,6 @@ Group project for 467 class
 1. If you want to merge your branch to main make a pull request, but do not confirm it yourself.
 2. Put some documentation in your code or it will not be approved.
 
-# Setup
-1. The files on main are setup to whoever last commit them
-2. make sure that the z# matches yours or it will not work (do control F and look for the previous number)
-3. you must create a secrets.php file wrapped in a php tag
-    
-    $username = "student";
-    $password = "student";
-
-    $username2 = "your_z#";
-    $password2 = "your_password";
-
-4. In order to view the website you must have your files on hopper in the public.html directory
-
 # Authors
 Created By: 
 Aksh Patel,
@@ -26,4 +13,4 @@ Jacob Eul,
 Julia Finegan
 
 # Main Link
-http://students.cs.niu.edu/~z1892587/467-Product-System/
+http://students.cs.niu.edu/~z1892587/467-Product-System/home.html

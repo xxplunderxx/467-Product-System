@@ -21,6 +21,20 @@
     {
         echo "Connection to database failed: " . $e->getMessage();
     }
+
+    // tell user if they are logged in without correct credentials
+    if($_SESSION["login"][0] = "worker")
+    {
+        echo '<p>You were successfully logged in</p>';
+    }
+    elseif($_SESSION["login"][0] = "default")
+    {
+        echo '<p>ERROR invalid access contact an admin to be granted access to worker view</p>';
+    }
+    
+    else {
+        echo '<p>you are not logged in</p>';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -62,8 +76,9 @@
         // check if logged in successfully
         if($username == $db_username && $pass_match)
         {
-            echo " user ". $username. " logged in successfully ";
             $_SESSION["login"][0] = $status;
+            header("Location: http://students.cs.niu.edu/~z1892587/467-Product-System/worker.php");
+            exit(); // redirect browser
         }
         else {
             echo "incorrect credentials";

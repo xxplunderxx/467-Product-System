@@ -111,7 +111,7 @@ th{
             }
         }
         else {
-            echo "ERROR - FORM HAS NOT BEEN SENT";
+            echo "<p>FORM HAS NOT BEEN SENT</p>";
         }
 
     // end table from above

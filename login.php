@@ -23,11 +23,11 @@
     }
 
     // tell user if they are logged in without correct credentials
-    if($_SESSION["login"][0] = "worker")
+    if($_SESSION["login"][0] == "worker")
     {
         echo '<p>You were successfully logged in</p>';
     }
-    elseif($_SESSION["login"][0] = "default")
+    elseif($_SESSION["login"][0] == "default")
     {
         echo '<p>ERROR invalid access contact an admin to be granted access to worker view</p>';
     }

@@ -55,6 +55,8 @@
             <li><a href="inbound.php">Log Inbound Products</a></li>
             <li><a href="completed.php">Completed Orders</a></li>
             <li><a href="administrator.php">Administrator</a></li>
+            <li><a href="login.php">Log In</a></li>
+            <li><a href="register.php">Register</a></li>
         </ul>
     </body>
 </html>

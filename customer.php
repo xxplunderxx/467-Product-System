@@ -446,13 +446,10 @@ form { display: inline; }
 			foreach($pdo->query($sql) as $item)
             {
 				//fill in table
-				if(!$is_built) 
-				{
-					$sql2 = "INSERT INTO Inventory(Num) VALUES(?);";
-					$prepared2 = $pdo2->prepare($sql2);
-					$prepared2->execute(array($item[0]));   // item number from legacy_DB
-					$is_built = true;
-				}	
+				// $sql2 = "INSERT INTO Inventory(Num) VALUES(?);";
+				// $prepared2 = $pdo2->prepare($sql2);
+				// $prepared2->execute(array($item[0]));   // item number from legacy_DB
+				// $is_built = TRUE;
 				
 				// Finds inventory and prints all product info
 				$sql2 = "SELECT * FROM Inventory WHERE Num = ?;";
@@ -469,6 +466,6 @@ form { display: inline; }
 			}
                 echo "</table>";
 	}
+echo "</body>";
+echo "</html>";
 ?>
-</body>
-</html>

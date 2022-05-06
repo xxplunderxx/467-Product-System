@@ -67,7 +67,8 @@
             $bool = $prepared->execute(array($username,$hash));   // user name and hash
 
             if ($bool) {
-                echo "successfully created user: " . $username;
+                header("Location: http://students.cs.niu.edu/~z1892587/467-Product-System/login.php");
+                exit(); // redirect browser
             }
             else {
                 echo "error";

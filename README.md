@@ -2,7 +2,7 @@
 Group project for 467 class
 
 # Background
-Group project for my software engineering class taken in spring of 2022. Read purpose file for more information 
+Group project for my software engineering class taken in spring of 2022. Read problem statement for more information 
 on the assignment. Our project uses an encrypted login system utilizing sessions to keep users logged in and
 to store shopping cart information for a better user experience.
 

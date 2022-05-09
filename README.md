@@ -1,16 +1,19 @@
 # 467-Product-System
 Group project for 467 class
 
-# Rules
-1. If you want to merge your branch to main make a pull request, but do not confirm it yourself.
-2. Put some documentation in your code or it will not be approved.
+# Background
+Group project for my software engineering class taken in spring of 2022. Read purpose file for more information 
+on the assignment. Our project uses an encrypted login system utilizing sessions to keep users logged in and
+to store shopping cart information for a better user experience.
 
 # Authors
-Created By: 
-Aksh Patel,
-Alexandra Alcantar,
+Backend Developers:
 Jacob Eul,
 Julia Finegan
+
+Frontend Developers:
+Aksh Patel,
+Alexandra Alcantar
 
 # Main Link
 http://students.cs.niu.edu/~z1892587/467-Product-System/home.html

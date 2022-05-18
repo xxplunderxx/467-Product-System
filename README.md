@@ -1,5 +1,5 @@
 # 467-Product-System
-Group project for 467 class
+Group project for 467 (software engineering class)
 
 # Background
 Group project for my software engineering class taken in spring of 2022. Read problem statement for more information 

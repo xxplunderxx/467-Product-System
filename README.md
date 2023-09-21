@@ -14,6 +14,3 @@ Julia Finegan
 Frontend Developers:
 Aksh Patel,
 Alexandra Alcantar
-
-# Main Link
-http://students.cs.niu.edu/~z1892587/467-Product-System/home.html
